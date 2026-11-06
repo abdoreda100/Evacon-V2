@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Evacon | إدارة العقارات والعملاء V3</title>
+<style>
+:root{--bg:#f5f7f8;--card:#fff;--text:#192831;--muted:#657480;--line:#dfe7e9;--accent:#0b6b55;--soft:#e2f5ee;--blue:#1f5fac;--danger:#b63831;--warn:#ad6200;--shade:#f0f4f5}
+@media(prefers-color-scheme:dark){:root{--bg:#11181c;--card:#1c262b;--text:#e9f0f0;--muted:#a7b8bf;--line:#36454c;--accent:#48d7a7;--soft:#163e32;--blue:#8fbcff;--danger:#ff8277;--warn:#ffd08c;--shade:#253238}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 Tahoma,Arial,sans-serif;padding-top:env(safe-area-inset-top)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:9px;padding:8px 12px}button:hover{border-color:var(--accent)}button:disabled{opacity:.5;cursor:wait}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.danger{color:var(--danger)}.outline{border-color:var(--accent);color:var(--accent)}input,select,textarea{width:100%;min-width:0;padding:9px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:9px}input:focus,textarea:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}label{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}.page{max-width:1180px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:22px;font-weight:800}.sub{color:var(--muted);font-size:12px}.nav,.actions,.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.nav{margin:18px 0}.nav button.active,.tabs button.active{background:var(--soft);border-color:var(--accent);color:var(--accent);font-weight:700}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px}.stat b{display:block;font-size:23px}.stat span{font-size:12px;color:var(--muted)}.section{margin:14px 0}.filters>*{flex:1 1 148px}.filters input[type=number]{max-width:180px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,335px),1fr));gap:10px}.card h3{margin:0 0 5px;font-size:16px}.meta{color:var(--muted);font-size:12px;display:flex;gap:7px 12px;flex-wrap:wrap}.badge{font-size:12px;border-radius:25px;padding:2px 9px;background:var(--soft);color:var(--accent);white-space:nowrap}.badge.warn{color:var(--warn);background:var(--shade)}.badge.gray{background:var(--shade);color:var(--muted)}.badge.red{color:var(--danger);background:var(--shade)}.row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.details{margin-top:10px}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.cell{padding:7px 9px;border-radius:8px;background:var(--shade);min-width:0}.cell small{color:var(--muted);display:block}.cell strong{font-size:13px;overflow-wrap:anywhere;white-space:pre-wrap}.muted{color:var(--muted)}.notes{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;background:var(--shade);border-radius:8px;margin-top:10px}.hide{display:none!important}.empty{color:var(--muted);text-align:center;padding:35px 15px}.loading{color:var(--muted);padding:20px;text-align:center}.actions{margin-top:12px}.actions button{font-size:12px;padding:6px 9px}.login{width:min(94%,450px);margin:9vh auto;padding:23px;border:1px solid var(--line);border-radius:16px;background:var(--card)}.login h2{margin:0 0 5px}.login label{margin-top:13px}.login button{width:100%;margin-top:15px}.message{min-height:23px;color:var(--muted);font-size:12px;margin-top:9px}.error{color:var(--danger)}dialog{color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;width:min(96vw,660px);max-height:91vh;overflow:auto}dialog::backdrop{background:rgba(0,0,0,.65)}dialog h2{font-size:19px;margin:0 0 12px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.full{grid-column:1/-1}.toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0}.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px;margin-top:10px}.media-tile{background:var(--shade);border-radius:9px;overflow:hidden;position:relative;min-height:90px}.media-tile img{width:100%;height:108px;object-fit:cover;display:block}.media-tile a{display:block;text-align:center;overflow-wrap:anywhere;padding:7px;color:var(--accent)}.media-tile button{position:absolute;top:4px;left:4px;font-size:12px;background:var(--card)}.light-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px}.mini{padding:9px;background:var(--shade);border-radius:9px}.mini b{font-size:17px;display:block}.table-scroll{overflow:auto}.report-table{border-collapse:collapse;width:100%;min-width:550px}.report-table th,.report-table td{text-align:right;border-bottom:1px solid var(--line);padding:9px}.bar{height:9px;background:var(--line);border-radius:20px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--accent)}.match{border-right:3px solid var(--accent);margin-top:8px;padding:8px;background:var(--shade);border-radius:8px}.tabs{display:flex;gap:7px;flex-wrap:wrap}.follow-item{border-bottom:1px solid var(--line);padding:10px 0}.follow-item:last-child{border:0}.pulse{color:var(--danger);font-weight:700}.toast{position:fixed;bottom:14px;right:14px;left:14px;margin:auto;max-width:560px;background:var(--text);color:var(--card);padding:12px;border-radius:12px;display:none;z-index:3000}.toast.visible{display:block}.counter{background:var(--danger);color:white;border-radius:18px;padding:1px 7px;font-size:11px}.small{font-size:12px}.divider{height:1px;background:var(--line);margin:13px 0}
+.offer-pending{border-inline-start:4px solid var(--warn)}.offer-rejected{border-inline-start:4px solid var(--danger)}.offer-approved{border-inline-start:4px solid var(--accent)}.offer-topline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:7px 0}.offer-notif{border-inline-start:3px solid var(--accent)}@media(max-width:650px){.page{padding:10px}.brand{font-size:19px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:1fr}.nav{gap:5px}.nav button{font-size:12px;padding:7px}.filters>*{flex:1 1 120px}.filters input[type=number]{max-width:none}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}dialog{padding:13px}}
+</style>
+</head>
+<body>
+<section id="loginBox" class="login">
+<h2>🏢 Evacon | تسجيل الدخول</h2><p class="sub">نظام إدارة العملاء والعقارات</p>
+<label for="loginEmail">البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="username" placeholder="name@company.com">
+<label for="loginPassword">كلمة المرور</label><input id="loginPassword" type="password" autocomplete="current-password">
+<label for="loginRole">نوع الحساب</label><select id="loginRole"><option value="user">موظف</option><option value="admin">أدمن</option></select>
+<button id="loginBtn" class="primary">تسجيل الدخول</button><div id="loginMessage" class="message" role="status"></div>
+</section>
+<div id="app" class="page hide">
+<header class="top"><div><div class="brand">🏢 Evacon <span class="badge">V5</span></div><div class="sub" id="who"></div></div>
+<div class="actions"><button id="refreshBtn">↻ تحديث</button><button id="logoutBtn">تسجيل خروج</button></div></header>
+<nav class="nav" id="nav">
+<button data-page="dashboard" class="active">📊 الرئيسية <span id="alertCount"></span></button>
+<button data-page="requests">👤 الطلبات</button><button data-page="offers">📨 ترشيحات الشقق <span id="offerCount"></span></button><button data-page="properties">🏠 مخزون العقارات</button>
+<button data-page="followups">⏰ المتابعات</button><button data-page="notifications">🔔 الإشعارات <span id="notificationCount"></span></button><button data-page="reports">📈 التقارير</button>
+<button data-page="audit" id="auditNav" class="hide">🧾 سجل النشاط</button>
+</nav>
+<section id="dashboardPage" class="view"><div class="stats" id="stats"></div><div class="section"><div class="toolbar"><h3>⏰ تنبيهات المتابعة</h3><span class="sub">تظهر داخل الموقع عند فتحه أو تحديثه، وليست إشعارات هاتف بالخلفية</span></div><div id="dashboardAlerts"></div></div><div class="section"><h3>ملخص أداء الموظفين</h3><div id="dashboardAgents"></div></div></section>
+<section id="requestsPage" class="view hide">
+<div class="toolbar"><h3>طلبات العملاء</h3><div class="actions"><button id="exportRequests" class="outline">Excel</button><button id="printRequests">حفظ PDF / طباعة</button><button id="addRequest" class="primary">+ طلب جديد</button></div></div>
+<p class="sub">كل الطلبات، سواء أضافها الأدمن أو أي موظف، ظاهرة لجميع الفريق. رقم العميل يظهر للأدمن فقط بعد الحفظ، وحذف أي طلب متاح للأدمن فقط.</p>
+<div class="filters"><input id="requestSearch" placeholder="الاسم / المنطقة / الموظف"><select id="requestStage"><option value="">كل المراحل</option><option value="new">جديد</option><option value="contacted">تم التواصل</option><option value="viewing">معاينة</option><option value="negotiation">تفاوض</option><option value="won">نجاح</option><option value="lost">لم تتم</option></select><select id="requestAgent"><option value="">كل الموظفين</option></select></div><div id="requestList" class="cards section"></div>
+</section>
+<section id="offersPage" class="view hide">
+ <div class="toolbar"><div><h3>📨 ترشيحات الشقق للمشترين</h3><p class="sub">السيلز يرسل بيانات الشقة لطلب معيّن، والأدمن يراجعها قبل عرضها على المشتري. كل تغيير يظهر في سجل الشقة وإشعارات الحساب.</p></div><button id="addOffer" class="primary employee-only">+ إرسال شقة للمراجعة</button></div>
+ <div id="offerSummary" class="stats section"></div>
+ <div class="filters"><input id="offerSearch" placeholder="بحث بالموظف / المشروع / المنطقة / الطلب"><select id="offerStatus"><option value="">كل الحالات</option><option value="pending">في انتظار رد المسؤول</option><option value="approved">مقبولة للعرض</option><option value="viewing">جاري المعاينة</option><option value="negotiation">جاري التفاوض</option><option value="rejected">مرفوضة</option></select><select id="offerRequestFilter"><option value="">كل الطلبات</option></select></div>
+ <div id="offerList" class="cards section"></div>
+</section>
+<section id="propertiesPage" class="view hide">
+<div class="toolbar"><h3>مخزون الوحدات</h3><div class="actions"><button id="exportProperties" class="outline">Excel</button><button id="printProperties">حفظ PDF / طباعة</button><button id="addProperty" class="primary admin-only">+ إضافة وحدة</button></div></div>
+<div class="filters"><input id="propertySearch" placeholder="مشروع / منطقة / كود / مالك"><select id="propertyStatus"><option value="">كل الحالات</option><option>متاحة</option><option>محجوزة</option><option>مباعة</option></select><select id="propertyListing"><option value="">بيع وإيجار</option><option>بيع</option><option>إيجار</option></select><select id="propertySource"><option value="">مالك أو بروكر</option><option>مالك</option><option>بروكر</option></select><select id="propertyType"><option value="">كل أنواع الوحدات</option><option>شقة</option><option>فيلا</option><option>دوبلكس</option><option>استوديو</option><option>محل</option><option>مكتب</option><option>أرض</option></select><input id="propertyPriceMin" type="number" min="0" placeholder="سعر من"><input id="propertyPriceMax" type="number" min="0" placeholder="سعر إلى"><input id="propertySizeMin" type="number" min="0" placeholder="مساحة من"><input id="propertySizeMax" type="number" min="0" placeholder="مساحة إلى"><input id="propertyRooms" type="number" min="0" placeholder="غرف على الأقل"><select id="propertySort"><option value="newest">الأحدث أولًا</option><option value="priceAsc">السعر الأقل</option><option value="priceDesc">السعر الأعلى</option><option value="sizeDesc">المساحة الأكبر</option></select><select id="propertyArchive" class="admin-only"><option value="active">الوحدات الحالية</option><option value="archived">الأرشيف فقط</option><option value="all">الكل بما فيه الأرشيف</option></select></div>
+<div class="toolbar"><span id="propertyCount" class="sub"></span><div class="actions"><button id="expandProperties">عرض كل التفاصيل</button><button id="collapseProperties">إخفاء التفاصيل</button></div></div><div id="propertyList" class="cards"></div>
+</section>
+<section id="followupsPage" class="view hide"><div class="toolbar"><h3>متابعات العملاء</h3><div class="tabs" id="followTabs"><button data-filter="pending" class="active">القادمة</button><button data-filter="overdue">المتأخرة</button><button data-filter="done">المنتهية</button><button data-filter="all">الكل</button></div></div><div class="card" id="followList"></div></section>
+<section id="reportsPage" class="view hide"><h3>تقارير الأداء</h3><div class="sub">كل الفريق يرى الطلبات، لكن التقارير الشخصية والمتابعات المخصصة حسب الموظف المسؤول.</div><div id="reportStats" class="stats section"></div><div class="card section"><h3>أداء الموظفين</h3><div class="table-scroll"><table class="report-table"><thead><tr><th>الموظف</th><th>الطلبات</th><th>تمت بنجاح</th><th>المعاينات</th><th>المتابعات المكتملة</th><th>نسبة النجاح</th></tr></thead><tbody id="agentReport"></tbody></table></div></div><div class="card section"><h3>المناطق الأكثر طلبًا</h3><div id="areasReport"></div></div><div class="actions"><button id="exportReport" class="outline">تصدير Excel للتقارير</button><button id="printReport">PDF / طباعة التقرير</button></div></section>
+<section id="notificationsPage" class="view hide">
+<div class="toolbar"><div><h3>🔔 الإشعارات</h3><div class="sub">رسائل داخل الموقع من إدارة Evacon</div></div><button id="sendNotificationBtn" class="primary admin-only">+ إرسال إشعار للموظفين</button></div>
+<div id="notificationList" class="section"></div>
+</section>
+<section id="auditPage" class="view hide"><h3>سجل النشاط وتغييرات البيانات</h3><div class="filters"><input id="auditSearch" placeholder="ابحث بالنشاط أو المستخدم أو الوحدة"><select id="auditAction"><option value="">جميع الأنشطة</option><option value="property">العقارات</option><option value="request">الطلبات</option><option value="followup">المتابعات</option><option value="login">تسجيل الدخول والخروج</option></select></div><div id="auditList" class="section"></div></section>
+<div id="status" class="message" role="status"></div>
+</div>
+
+<dialog id="requestDialog"><form id="requestForm"><h2 id="requestTitle">إضافة طلب</h2>
+<div class="formgrid">
+<div><label>اسم العميل *</label><input id="rName" required></div><div><label>رقم العميل (هيظهر للأدمن فقط بعد الحفظ)</label><input id="rPhone" type="tel" inputmode="tel" autocomplete="off"></div>
+<div><label>نوع الطلب</label><select id="rType"><option>شراء</option><option>إيجار</option><option>بيع (مالك)</option><option>تأجير (مالك)</option></select></div><div><label>نوع العقار</label><select id="rPtype"><option>شقة</option><option>فيلا</option><option>دوبلكس</option><option>استوديو</option><option>محل</option><option>مكتب</option><option>أرض</option></select></div>
+<div><label>المنطقة</label><input id="rArea"></div><div><label>الموظف المسؤول (بيتحدد تلقائيًا للموظف)</label><input id="rAgent"></div>
+<div><label>الميزانية (النص القديم)</label><input id="rBudget" placeholder="مثال: 3 مليون"></div><div><label>الأولوية</label><select id="rPriority"><option>عادية</option><option>عاجلة</option></select></div>
+<div><label>أقل ميزانية بالجنيه</label><input id="rMinPrice" type="number" min="0" step="1"></div><div><label>أقصى ميزانية بالجنيه</label><input id="rMaxPrice" type="number" min="0" step="1"></div>
+<div><label>أقل مساحة م²</label><input id="rMinSize" type="number" min="0" step="0.01"></div><div><label>أقصى مساحة م²</label><input id="rMaxSize" type="number" min="0" step="0.01"></div>
+<div class="full"><label>ملاحظات</label><textarea id="rNotes" rows="3"></textarea></div>
+</div><div class="actions"><button type="submit" class="primary" id="requestSaveBtn">حفظ الطلب</button><button type="button" data-close="requestDialog">إلغاء</button></div></form></dialog>
+
+<dialog id="propertyDialog"><form id="propertyForm"><h2 id="propertyTitle">إضافة وحدة</h2><div class="formgrid">
+<div><label>كود الوحدة</label><input id="pCode" placeholder="EV-001"></div><div><label>اسم المشروع *</label><input id="pProject" required></div>
+<div><label>المنطقة *</label><input id="pArea" required></div><div><label>نوع العقار</label><select id="pType"><option>شقة</option><option>فيلا</option><option>دوبلكس</option><option>استوديو</option><option>محل</option><option>مكتب</option><option>أرض</option></select></div>
+<div><label>نوع العرض</label><select id="pListing"><option>بيع</option><option>إيجار</option></select></div><div><label>حالة الوحدة</label><select id="pState"><option>متاحة</option><option>محجوزة</option><option>مباعة</option></select></div>
+<div><label>المساحة م² *</label><input id="pSize" type="number" step="0.01" min="0.01" required></div><div><label>السعر بالجنيه *</label><input id="pPrice" type="number" step="0.01" min="0.01" required></div>
+<div><label>الدور</label><input id="pFloor"></div><div><label>عدد الغرف (0 مسموح)</label><input id="pBeds" type="number" step="1" min="0"></div><div><label>عدد الحمامات (0 مسموح)</label><input id="pBaths" type="number" step="1" min="0"></div>
+<div><label>مصدر الوحدة</label><select id="pSource"><option value="مالك">مالك مباشر</option><option value="بروكر">بروكر</option></select></div><div><label>اسم المالك / البروكر</label><input id="pContact"></div><div><label>رقم المالك / البروكر (للأدمن فقط)</label><input id="pContactPhone" type="tel"></div>
+<div class="full"><label>ملاحظات</label><textarea id="pNotes" rows="3"></textarea></div>
+</div><div class="actions"><button type="submit" class="primary" id="propertySaveBtn">حفظ الوحدة</button><button type="button" data-close="propertyDialog">إلغاء</button></div></form></dialog>
+
+<dialog id="offerDialog"><form id="offerForm"><h2>إرسال شقة لمراجعة المسؤول</h2>
+ <p class="sub">التقديم مرتبط بطلب عميل. لازم تتأكد من بيانات المالك/البروكر والعمولة قبل الإرسال.</p><p class="sub" id="offerSubmitBy"></p><div class="full"><label for="oEmployeeName">اسم الموظف مُقدِّم الترشيح * (اكتبه بنفسك)</label><input id="oEmployeeName" maxlength="140" required autocomplete="off" placeholder="اكتب اسمك هنا"></div>
+ <div class="formgrid">
+ <div class="full"><label for="oRequest">طلب المشتري *</label><select id="oRequest" required></select><div id="offerRequestHint" class="sub"></div></div>
+ <div><label for="oProject">اسم المشروع / الكمبوند *</label><input id="oProject" maxlength="180" required></div>
+ <div><label for="oArea">المنطقة *</label><input id="oArea" maxlength="180" required></div>
+ <div><label for="oType">نوع العقار</label><select id="oType"><option>شقة</option><option>فيلا</option><option>دوبلكس</option><option>استوديو</option><option>محل</option><option>مكتب</option><option>أرض</option></select></div>
+ <div><label for="oSize">المساحة بالمتر² *</label><input id="oSize" type="number" min="1" max="999999" step="0.01" required></div>
+ <div><label for="oPrice">السعر بالجنيه *</label><input id="oPrice" type="number" min="1" max="999999999999" step="0.01" required></div>
+ <div><label for="oFloor">الدور</label><input id="oFloor" maxlength="60" placeholder="مثال: الثالث"></div>
+ <div><label for="oBeds">عدد الغرف</label><input id="oBeds" type="number" min="0" max="99" step="1"></div>
+ <div><label for="oBaths">عدد الحمامات</label><input id="oBaths" type="number" min="0" max="99" step="1"></div>
+ <div><label for="oFinish">حالة التشطيب</label><select id="oFinish"><option value="">غير محدد</option><option>متشطبة</option><option>نصف تشطيب</option><option>على الطوب الأحمر</option><option>أخرى</option></select></div>
+ <div><label for="oFacing">الاتجاه / الواجهة</label><input id="oFacing" maxlength="120" placeholder="بحري / قبلي / أمامي / خلفي"></div>
+ <div><label for="oSource">مصدر الشقة *</label><select id="oSource"><option value="مالك">مالك مباشر</option><option value="بروكر">بروكر</option></select></div>
+ <div><label for="oContact">اسم المالك أو البروكر *</label><input id="oContact" maxlength="180" required></div>
+ <div><label for="oPhone">رقم المالك أو البروكر * (بعد الإرسال يظهر للأدمن فقط)</label><input id="oPhone" type="tel" maxlength="35" autocomplete="off" required></div>
+ <div class="full"><label for="oCommission">تفاصيل العمولة <span id="commissionRequired">* (إلزامية عند التعامل مع مالك مباشر)</span></label><textarea id="oCommission" rows="2" maxlength="1500" placeholder="تم الاتفاق على عمولة كام؟ وعلى مين؟"></textarea></div>
+ <div><label for="oViewing">المعاينة متاحة إمتى؟</label><input id="oViewing" maxlength="200" placeholder="مثال: السبت بعد الساعة 4"></div>
+ <div><label for="oKeys">المفتاح مع مين؟</label><input id="oKeys" maxlength="150"></div>
+ <div><label for="oNegotiable">هل السعر قابل للتفاوض؟</label><select id="oNegotiable"><option value="">غير معروف</option><option>نعم</option><option>لا</option><option>حسب العرض</option></select></div>
+ <div class="full"><label for="oNotes">تفاصيل إضافية عن الشقة</label><textarea id="oNotes" rows="3" maxlength="2500" placeholder="مميزات، رابط إعلان، نقاط مهمة للمسؤول"></textarea></div>
+ </div><div class="actions"><button id="offerSubmitBtn" class="primary" type="submit">إرسال للمراجعة</button><button type="button" data-close="offerDialog">إلغاء</button></div></form></dialog>
+<dialog id="offerReviewDialog"><form id="offerReviewForm"><h2>مراجعة ترشيح الشقة</h2><p class="sub" id="offerReviewContext"></p>
+<label for="offerReviewStatus">القرار / المرحلة التالية *</label><select id="offerReviewStatus" required></select>
+<div id="offerRejectSection" class="hide"><label for="offerRejectReason">سبب الرفض * (هيظهر للموظف في الإشعار)</label><textarea id="offerRejectReason" maxlength="1500" rows="3" placeholder="وضح سبب الرفض بدقة"></textarea></div>
+<label for="offerReviewNote">تعليق المسؤول (اختياري)</label><textarea id="offerReviewNote" maxlength="1500" rows="3" placeholder="مثال: الشقة مطابقة للميزانية، تواصل مع المالك لتحديد المعاينة"></textarea>
+<div class="actions"><button id="offerReviewSave" type="submit" class="primary">تحديث وإخطار الموظف</button><button type="button" data-close="offerReviewDialog">إلغاء</button></div></form></dialog>
+<dialog id="offerHistoryDialog"><h2 id="offerHistoryTitle">سجل ترشيح الشقة</h2><div id="offerHistoryBody"></div><div class="actions"><button type="button" data-close="offerHistoryDialog">إغلاق</button></div></dialog>
+<dialog id="finishDialog"><form id="finishForm"><h2>إنهاء الطلب</h2><label>السبب</label><select id="finishReason"><option>تم البيع بنجاح</option><option>العميل اشترى من مكان آخر</option><option>العميل ألغى الطلب</option><option>عدم توافر العقار المناسب</option><option>العميل لم يعد مهتماً</option><option>سبب آخر</option></select><label>تفاصيل</label><textarea id="finishDetails" rows="3"></textarea><div class="actions"><button type="submit" class="primary">تأكيد</button><button type="button" data-close="finishDialog">إلغاء</button></div></form></dialog>
+<dialog id="stageDialog"><form id="stageForm"><h2>تغيير مرحلة العميل</h2><label>اختر المرحلة الجديدة</label><select id="stageValue"><option value="new">جديد</option><option value="contacted">تم التواصل</option><option value="viewing">معاينة</option><option value="negotiation">تفاوض</option><option value="won">تم بنجاح</option><option value="lost">لم تتم</option></select><div class="actions"><button type="submit" class="primary">حفظ المرحلة</button><button type="button" data-close="stageDialog">إلغاء</button></div></form></dialog>
+<dialog id="followDialog"><form id="followForm"><h2 id="followTitle">إضافة متابعة</h2><label>نوع المتابعة</label><select id="followType"><option>مكالمة</option><option>واتساب</option><option>معاينة</option><option>اجتماع</option><option>أخرى</option></select><label>الموعد *</label><input id="followDate" type="datetime-local" required><label>ملاحظات المتابعة *</label><textarea id="followNote" rows="3" required maxlength="2000"></textarea><div class="actions"><button type="submit" class="primary">حفظ المتابعة</button><button type="button" data-close="followDialog">إلغاء</button></div></form></dialog>
+<dialog id="matchDialog"><h2 id="matchTitle">مطابقة الوحدات</h2><div id="matchList"></div><div class="actions"><button type="button" data-close="matchDialog">إغلاق</button></div></dialog>
+<dialog id="mediaDialog"><h2 id="mediaTitle">صور وفيديوهات الوحدة</h2><div id="mediaCurrent"></div><div id="mediaAdmin" class="admin-only"><div class="divider"></div><label>رفع صور أو فيديو من الجهاز (حد أقصى 50MB للملف)</label><input id="mediaFiles" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" multiple><div class="actions"><button type="button" class="primary" id="uploadMedia">رفع الملفات</button></div><label>أو رابط فيديو خارجي HTTPS</label><input id="mediaUrl" type="url" placeholder="https://www.youtube.com/watch?v=..."><div class="actions"><button id="addMediaUrl" type="button">إضافة رابط الفيديو</button></div></div><div class="actions"><button type="button" data-close="mediaDialog">إغلاق</button></div></dialog>
+<dialog id="historyDialog"><h2 id="historyTitle">تاريخ تغييرات الوحدة</h2><div id="historyList"></div><div class="actions"><button type="button" data-close="historyDialog">إغلاق</button></div></dialog>
+<dialog id="notificationDialog"><form id="notificationForm"><h2>إرسال إشعار لجميع الموظفين</h2>
+<label>عنوان الإشعار *</label><input id="notificationTitle" maxlength="120" required placeholder="مثال: اجتماع مهم">
+<label style="margin-top:10px">نص الإشعار *</label><textarea id="notificationMessage" rows="4" maxlength="2000" required placeholder="اكتب تفاصيل الإشعار..."></textarea>
+<div class="actions"><button type="submit" class="primary" id="sendNotificationSave">إرسال الإشعار</button><button type="button" data-close="notificationDialog">إلغاء</button></div>
+</form></dialog>
+<div id="toast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+'use strict';
+const URL_SUPABASE='https://rvwszrivierijharqxpf.supabase.co';
+const PUBLISHABLE_KEY='sb_publishable_g4Zs4Zy0p7B8Ne9GNGkWug_M2DBW__4';
+const MEDIA_BUCKET='evacon-media';
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const blank=v=>v===null||v===undefined||String(v).trim()===''?'—':esc(v);
+const n=v=>Number(v)||0;
+const money=v=>v===null||v===undefined||v===''?'—':new Intl.NumberFormat('ar-EG').format(Number(v))+' جنيه';
+const date=v=>{if(!v)return '—';const d=new Date(typeof v==='number'||/^\d{12,}$/.test(String(v))?Number(v):v);return Number.isNaN(+d)?'—':d.toLocaleString('ar-EG');};
+const offerLabels={pending:'في انتظار رد المسؤول',approved:'مقبولة للعرض أمام المشتري',viewing:'جاري المعاينة',negotiation:'جاري التفاوض',rejected:'مرفوضة'};
+const stageLabels={new:'جديد',contacted:'تم التواصل',viewing:'معاينة',negotiation:'تفاوض',won:'نجاح',lost:'لم تتم'};
+const auditLabels={property_created:'إضافة وحدة',property_updated:'تعديل وحدة',property_archived:'أرشفة وحدة',property_restored:'استعادة وحدة',property_deleted:'حذف وحدة',request_created:'إضافة طلب',request_updated:'تعديل طلب',request_deleted:'حذف طلب',followup_created:'إضافة متابعة',followup_completed:'إنهاء متابعة',login:'تسجيل دخول',logout:'تسجيل خروج'};
+const fieldLabels={code:'كود الوحدة',project:'المشروع',area:'المنطقة',property_type:'نوع الوحدة',listing_type:'نوع العرض',size_m2:'المساحة',price:'السعر',floor:'الدور',bedrooms:'الغرف',bathrooms:'الحمامات',source_type:'المصدر',contact_name:'اسم المالك',contact_phone:'هاتف المالك',status:'الحالة',notes:'الملاحظات',archived_at:'الأرشفة'};
+const state={user:null,profile:null,role:'user',page:'dashboard',requests:[],properties:[],followups:[],media:[],notifications:[],sentNotifications:[],offers:[],offerAlerts:[],staffAlerts:[],offerReviewId:null,logs:[],signed:{},currentRequest:null,currentProperty:null,finishId:null,stageId:null,followRequestId:null,mediaId:null,followFilter:'pending',collapsed:new Set(),busy:false};
+const admin=()=>state.role==='admin';
+let sb;
+function status(s,isError=false){$('status').textContent=s;$('status').classList.toggle('error',isError);}
+function notify(msg){$('toast').textContent=msg;$('toast').classList.add('visible');setTimeout(()=>$('toast').classList.remove('visible'),4000);}
+function err(e){console.error(e);notify('خطأ: '+(e?.message||String(e)));status(e?.message||String(e),true);}
+function setBusy(button,on){if(button)button.disabled=on;}
+async function rpc(name,args={}){const {data,error}=await sb.rpc(name,args);if(error)throw error;return data;}
+function norm(s){return String(s??'').trim().toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[\u064b-\u065f]/g,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim();}
+function paramNum(id){const s=$(id).value.trim();return s===''?null:Number(s);}
+function isStaffRequest(id){return String(id||'').startsWith('sr_');}
+function staffUuid(id){return String(id||'').slice(3);}
+function canFollow(r){return admin()||Boolean(isStaffRequest(r.id)?r.created_by===state.user?.id:state.profile?.full_name&&norm(state.profile.full_name)===norm(r.agent));}
+function allowedRequests(){return admin()?state.requests:state.requests.filter(r=>canFollow(r));}
+function stageOf(r){return r.status==='done'?(r.lead_stage==='won'||r.lead_stage==='lost'?r.lead_stage:(r.feedback_reason==='تم البيع بنجاح'?'won':'lost')):r.lead_stage&&stageLabels[r.lead_stage]?r.lead_stage:r.status==='act'?'contacted':'new';}
+function displayRole(){document.querySelectorAll('.admin-only').forEach(el=>el.classList.toggle('hide',!admin()));document.querySelectorAll('.employee-only').forEach(el=>el.classList.toggle('hide',admin()));$('auditNav').classList.toggle('hide',!admin());$('who').textContent=(admin()?'الأدمن':'الموظف')+' — '+(state.profile?.full_name||'')+' ('+(state.user?.email||'')+')';}
+function page(name){if(name==='audit'&&!admin())return;state.page=name;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('hide',x.id!==name+'Page'));document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===name));renderAll();if(name==='audit')loadLogs().catch(err);}
+function showLogin(){state.user=null;state.offers=[];state.offerAlerts=[];state.staffAlerts=[];state.notifications=[];state.requests=[];state.profile=null;state.role='user';$('app').classList.add('hide');$('loginBox').classList.remove('hide');}
+async function enter(user){state.user=user;const {data,error}=await sb.from('profiles').select('role,full_name').eq('id',user.id).single();if(error||!data||!['admin','user'].includes(String(data.role).trim().toLowerCase())){await sb.auth.signOut();showLogin();$('loginMessage').textContent='هذا الحساب ليس له صلاحية مستخدم أو أدمن في profiles.';return;}
+state.profile=data;state.role=String(data.role).trim().toLowerCase();$('loginBox').classList.add('hide');$('app').classList.remove('hide');displayRole();await refresh();page('dashboard');}
+async function refresh(){
+ status('جارٍ تحديث البيانات...');
+ const calls=await Promise.allSettled([
+  rpc('evacon_v5_shared_legacy_requests'),rpc('evacon_v5_shared_staff_requests'),
+  rpc('evacon_list_properties',{p_include_archived:admin()}),
+  rpc('evacon_list_followups'),rpc('evacon_v4_staff_followup_list'),
+  rpc('evacon_list_media'),rpc('evacon_list_notifications'),
+  admin()?rpc('evacon_admin_list_sent_notifications'):Promise.resolve([]),
+  rpc('evacon_v5_offer_list'),rpc('evacon_offer_alert_list'),
+  rpc('evacon_v4_staff_alert_list')
+ ]);
+ const names=['الطلبات القديمة','طلبات الموظفين','الوحدات','المتابعات','متابعات الموظفين','الصور','الإشعارات','سجل الإشعارات','ترشيحات الشقق','تنبيهات الترشيحات','تنبيهات طلبات الموظفين'];
+ const value=(i)=>calls[i].status==='fulfilled'?(calls[i].value||[]):[];
+ // Never cache customer phone fields in the employee's browser state.
+ state.requests=[...value(0),...value(1)].map(r=>admin()?r:(({phone,client_phone,phone_number,mobile,whatsapp,...safe})=>safe)(r));
+ if(calls[2].status==='fulfilled')state.properties=value(2);
+ state.followups=[...value(3),...value(4)];
+ if(calls[5].status==='fulfilled'){state.media=value(5);await signMedia();}
+ if(calls[6].status==='fulfilled')state.notifications=value(6);
+ if(calls[7].status==='fulfilled')state.sentNotifications=value(7);
+ if(calls[8].status==='fulfilled')state.offers=value(8).map(o=>admin()?o:(({contact_phone,...safe})=>safe)(o));
+ if(calls[9].status==='fulfilled')state.offerAlerts=value(9);
+ if(calls[10].status==='fulfilled')state.staffAlerts=value(10);
+ const errors=calls.map((x,i)=>x.status==='rejected'?names[i]+': '+x.reason.message:null).filter(Boolean);
+ status(errors.length?'تعذر تحميل بعض البيانات: '+errors.join(' | '):'🟢 متصل بقاعدة بيانات Evacon',errors.length>0);
+ renderAll();
+}
+async function signMedia(){state.signed={};await Promise.all(state.media.filter(m=>m.storage_path).map(async m=>{try{const {data,error}=await sb.storage.from(MEDIA_BUCKET).createSignedUrl(m.storage_path,3600);if(!error&&data?.signedUrl)state.signed[m.id]=data.signedUrl;}catch(e){console.warn(e);}}));}
+function renderAll(){renderDashboard();renderRequests();renderOffers();renderProperties();renderFollowups();renderNotifications();renderReports();if(state.page==='audit')renderLogs();}
+function upcoming(){return state.followups.filter(f=>!f.completed_at).filter(f=>allowedRequests().some(r=>r.id===f.request_id));}
+function renderDashboard(){const own=allowedRequests(),active=state.properties.filter(p=>!p.archived_at),f=upcoming(),now=Date.now(),overdue=f.filter(x=>new Date(x.due_at).getTime()<now),soon=f.filter(x=>new Date(x.due_at).getTime()>=now&&new Date(x.due_at).getTime()<=now+86400000);
+const stats=[['الطلبات',own.length],['الطلبات الناجحة',own.filter(r=>stageOf(r)==='won').length],['وحدات متاحة',active.filter(p=>p.status==='متاحة').length],['متابعات متأخرة',overdue.length]];
+$('stats').innerHTML=stats.map(([k,v])=>`<div class="stat"><b>${v}</b><span>${esc(k)}</span></div>`).join('');$('alertCount').innerHTML=overdue.length?`<span class="counter">${overdue.length}</span>`:'';
+$('dashboardAlerts').innerHTML=overdue.concat(soon).sort((a,b)=>new Date(a.due_at)-new Date(b.due_at)).slice(0,15).map(x=>{const r=state.requests.find(r=>r.id===x.request_id);return `<div class="card section"><div class="row"><b>${blank(r?.name)} — ${blank(x.followup_type)}</b><span class="badge ${new Date(x.due_at).getTime()<now?'red':'warn'}">${new Date(x.due_at).getTime()<now?'متأخرة':'خلال 24 ساعة'}</span></div><div class="meta"><span>🕒 ${date(x.due_at)}</span><span>${blank(r?.agent)}</span></div><div class="notes">${blank(x.note)}</div><div class="actions"><button data-go-follow="1">عرض المتابعات</button></div></div>`;}).join('')||'<div class="empty card">لا توجد متابعات متأخرة أو خلال 24 ساعة 🎉</div>';
+const byAgent=aggregateAgents(own);$('dashboardAgents').innerHTML=byAgent.length?`<div class="light-grid">${byAgent.slice(0,8).map(a=>`<div class="mini"><b>${a.total}</b>${blank(a.name)}<div class="sub">نجاح ${a.won} · معاينات ${a.viewing}</div></div>`).join('')}</div>`:'<div class="empty">لا توجد بيانات بعد</div>';
+}
+function filteredRequests(){const q=norm($('requestSearch').value),st=$('requestStage').value,agent=$('requestAgent').value;return state.requests.filter(r=>(!q||norm([r.name,r.area,r.agent,admin()?r.phone:''].join(' ')).includes(q))&&(!st||stageOf(r)===st)&&(!agent||r.agent===agent)).sort((a,b)=>Number(b.priority==='عاجلة'&&b.status!=='done')-Number(a.priority==='عاجلة'&&a.status!=='done')||new Date(b.created_at)-new Date(a.created_at));}
+function renderRequests(){const old=$('requestAgent').value;const agents=[...new Set(state.requests.map(r=>r.agent).filter(Boolean))].sort();$('requestAgent').innerHTML='<option value="">كل الموظفين</option>'+agents.map(a=>`<option value="${esc(a)}" ${a===old?'selected':''}>${esc(a)}</option>`).join('');
+$('requestList').innerHTML=filteredRequests().map(r=>{const st=stageOf(r),myF=state.followups.filter(f=>f.request_id===r.id&&!f.completed_at).sort((a,b)=>new Date(a.due_at)-new Date(b.due_at)),due=myF[0];return `<article class="card"><div class="row"><h3>${blank(r.name)}</h3><span class="badge ${st==='lost'?'gray':st==='won'?'':'warn'}">${stageLabels[st]}</span></div><div class="meta"><span>🏠 ${blank(r.type)} · ${blank(r.ptype)}</span><span>📍 ${blank(r.area)}</span><span>💰 ${blank(r.budget)}</span>${admin()?`<span>📞 ${blank(r.phone)}</span>`:''}<span>👤 ${blank(r.agent)}</span><span>🗓 ${date(r.created_at)}</span></div>${r.priority==='عاجلة'?'<div class="badge red" style="display:inline-block;margin-top:8px">عاجل</div>':''}${r.notes?`<div class="notes">${esc(r.notes)}</div>`:''}${due?`<div class="match">المتابعة القادمة: ${date(due.due_at)} ${new Date(due.due_at)<new Date()?'<b class="pulse">(متأخرة)</b>':''}</div>`:''}<div class="actions"><button data-match="${esc(r.id)}">مطابقة شقق</button>${!admin()&&r.status!=='done'?`<button data-submit-for-request="${esc(r.id)}">📨 إرسال شقة</button>`:""}<button data-see-offers="${esc(r.id)}">الترشيحات (${state.offers.filter(o=>o.request_id===String(r.id)).length})</button>${canFollow(r)?`<button data-follow="${esc(r.id)}">+ متابعة</button>`:''}${admin()?`<button data-edit-request="${esc(r.id)}">تعديل</button>${r.status==='done'?`<button data-reopen="${esc(r.id)}">إعادة فتح</button>`:`<button data-finish="${esc(r.id)}">إنهاء</button>`}<button data-stage="${esc(r.id)}">تغيير المرحلة</button><button class="danger" data-delete-request="${esc(r.id)}">حذف</button>`:''}</div></article>`;}).join('')||'<div class="empty card">لا توجد طلبات مطابقة للبحث</div>';
+}
+function valCell(label,value){return `<div class="cell"><small>${esc(label)}</small><strong>${blank(value)}</strong></div>`;}
+function filteredProperties(){const q=norm($('propertySearch').value),st=$('propertyStatus').value,listing=$('propertyListing').value,source=$('propertySource').value,type=$('propertyType').value,arch=$('propertyArchive').value;
+const pMin=paramNum('propertyPriceMin'),pMax=paramNum('propertyPriceMax'),sMin=paramNum('propertySizeMin'),sMax=paramNum('propertySizeMax'),rooms=paramNum('propertyRooms');
+let out=state.properties.filter(p=>(admin()?(arch==='all'||(arch==='archived'?!!p.archived_at:!p.archived_at)):!p.archived_at)&&(!q||norm([p.code,p.project,p.area,p.property_type,p.contact_name,p.notes].join(' ')).includes(q))&&(!st||p.status===st)&&(!listing||(p.listing_type||'بيع')===listing)&&(!source||p.source_type===source)&&(!type||p.property_type===type)&&(pMin===null||+p.price>=pMin)&&(pMax===null||+p.price<=pMax)&&(sMin===null||+p.size_m2>=sMin)&&(sMax===null||+p.size_m2<=sMax)&&(rooms===null||+p.bedrooms>=rooms));
+const sort=$('propertySort').value;out.sort((a,b)=>sort==='priceAsc'?+a.price-+b.price:sort==='priceDesc'?+b.price-+a.price:sort==='sizeDesc'?+b.size_m2-+a.size_m2:Number(b.created_at)-Number(a.created_at));return out;}
+function mediaTiles(propertyId,withDelete=false){return state.media.filter(m=>m.property_id===propertyId).map(m=>{const url=m.storage_path?state.signed[m.id]:safeUrl(m.external_url);if(!url)return '';const action=withDelete&&admin()?`<button data-remove-media="${esc(m.id)}" class="danger" aria-label="حذف الوسائط">×</button>`:'';return `<div class="media-tile">${action}${m.media_type==='image'?`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(url)}" loading="lazy" alt="صورة الوحدة"></a>`:`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">🎬<div>فتح الفيديو</div></a>`}</div>`;}).join('');}
+function renderProperties(){const rows=filteredProperties();$('propertyCount').textContent=rows.length+' وحدة';$('propertyList').innerHTML=rows.map(p=>{const collapsed=state.collapsed.has(p.id),arch=!!p.archived_at,tiles=mediaTiles(p.id);return `<article class="card"><div class="row"><h3>${blank(p.project)}</h3><span class="badge ${arch?'gray':p.status==='محجوزة'?'warn':p.status==='مباعة'?'gray':''}">${arch?'مؤرشفة':blank(p.status)}</span></div><div class="meta"><span>🔖 ${blank(p.code)}</span><span>📍 ${blank(p.area)}</span><span>🏠 ${blank(p.property_type)} (${blank(p.listing_type||'بيع')})</span><span>📐 ${blank(p.size_m2)} م²</span><span>💰 ${money(p.price)}</span></div>${collapsed?'':`<div class="details"><div class="detail-grid">${valCell('كود الوحدة',p.code)}${valCell('المشروع',p.project)}${valCell('المنطقة',p.area)}${valCell('نوع الوحدة',p.property_type)}${valCell('نوع العرض',p.listing_type||'بيع')}${valCell('المساحة',p.size_m2+' م²')}${valCell('السعر',money(p.price))}${valCell('الدور',p.floor)}${valCell('الغرف',p.bedrooms)}${valCell('الحمامات',p.bathrooms)}${valCell('المصدر',p.source_type)}${valCell('اسم المالك / البروكر',p.contact_name)}${admin()?valCell('رقم المالك / البروكر',p.contact_phone):''}${valCell('الإضافة',date(p.created_at))}${valCell('آخر تحديث',date(p.updated_at))}</div><div class="notes">${blank(p.notes)}</div>${tiles?`<div class="media-grid">${tiles}</div>`:''}</div>`}<div class="actions"><button data-toggle-property="${esc(p.id)}">${collapsed?'عرض التفاصيل':'إخفاء التفاصيل'}</button><button data-open-media="${esc(p.id)}">📷 الصور والفيديو (${state.media.filter(m=>m.property_id===p.id).length})</button>${admin()?`<button data-history="${esc(p.id)}">السجل</button>${!arch?`<button data-edit-property="${esc(p.id)}">تعديل</button><button data-archive="${esc(p.id)}" class="danger">أرشفة</button>`:`<button data-restore="${esc(p.id)}">استعادة</button><button class="danger" data-delete-property="${esc(p.id)}">حذف نهائي من الأرشيف</button>`}`:''}</div></article>`;}).join('')||'<div class="empty card">لا توجد وحدات بالمعايير المختارة</div>';
+}
+function renderFollowups(){document.querySelectorAll('#followTabs button').forEach(x=>x.classList.toggle('active',x.dataset.filter===state.followFilter));const now=Date.now();let rows=state.followups.filter(f=>admin()||allowedRequests().some(r=>r.id===f.request_id));rows=rows.filter(f=>state.followFilter==='all'||(state.followFilter==='done'?!!f.completed_at:state.followFilter==='overdue'?!f.completed_at&&new Date(f.due_at).getTime()<now:!f.completed_at&&new Date(f.due_at).getTime()>=now));rows.sort((a,b)=>new Date(a.due_at)-new Date(b.due_at));$('followList').innerHTML=rows.map(f=>{const r=state.requests.find(x=>x.id===f.request_id);return `<div class="follow-item"><div class="row"><b>${blank(r?.name)} — ${blank(f.followup_type)}</b><span class="badge ${f.completed_at?'gray':new Date(f.due_at)<new Date()?'red':'warn'}">${f.completed_at?'منتهية':new Date(f.due_at)<new Date()?'متأخرة':'قادمة'}</span></div><div class="meta"><span>🕒 ${date(f.due_at)}</span><span>👤 ${blank(r?.agent)}</span>${f.completed_at?`<span>أُغلقت: ${date(f.completed_at)}</span>`:''}</div><div class="notes">${blank(f.note)}</div>${!f.completed_at&&r&&canFollow(r)?`<div class="actions"><button data-complete="${esc(f.id)}" class="primary">✔ تم التواصل / إغلاق</button></div>`:''}</div>`;}).join('')||'<div class="empty">لا توجد متابعات في هذا القسم</div>';
+}
+function staffAlertCards(){
+ return (state.staffAlerts||[]).filter(x=>!x.read_at).map(x=>`<article class="card section offer-notif"><div class="row"><b>👤 ${esc(x.title)}</b><span class="badge warn">جديد</span></div><div class="notes">${esc(x.message)}</div><div class="meta"><span>${date(x.created_at)}</span></div><div class="actions"><button class="outline" data-read-staff-alert="${esc(x.id)}">تحديد كمقروء</button><button data-goto-request="${esc(x.request_id)}">عرض الطلب</button></div></article>`).join('');
+}
+async function markStaffAlertRead(id){
+ try{await rpc('evacon_v4_staff_alert_read',{p_id:id});state.staffAlerts=state.staffAlerts.filter(x=>x.id!==id);renderNotifications();}
+ catch(e){err(e);}
+}
+async function gotoStaffRequest(id){
+ await refresh();page('requests');$('requestSearch').value='';$('requestStage').value='';$('requestAgent').value='';renderRequests();
+ const r=state.requests.find(r=>String(r.id)===String(id));
+ if(!r)notify('الطلب مش ظاهر في حسابك حاليًا');
+ else {$('requestSearch').value=r.name;renderRequests();}
+}
+function renderNotifications(){
+ const unreadOffers=(state.offerAlerts||[]).filter(x=>!x.read_at).length;
+ const unreadStaff=(state.staffAlerts||[]).filter(x=>!x.read_at).length;
+ const rows=(state.notifications||[]).filter(x=>!x.read_at);
+ $('notificationCount').innerHTML=(unreadOffers+unreadStaff+(!admin()?rows.length:0))?`<span class="counter">${unreadOffers+unreadStaff+(!admin()?rows.length:0)}</span>`:'';
+ const cards=offerAlertCards()+staffAlertCards();
+ if(admin()){
+  const sent=state.sentNotifications||[];
+  $('notificationList').innerHTML='<h3>تنبيهات الموظفين الجديدة</h3>'+
+   (cards||'<div class="empty card">لا توجد تنبيهات جديدة</div>')+
+   '<h3>سجل الإشعارات المرسلة</h3>'+sent.map(x=>`<article class="card section"><div class="row"><b>${esc(x.title)}</b><span class="badge">تم الإرسال</span></div><div class="notes">${esc(x.message)}</div><div class="meta"><span>${date(x.created_at)}</span><span>المستلمون: ${Number(x.recipient_count)||0}</span><span>قرأه: ${Number(x.read_count)||0}</span><span>لم يقرأه: ${(Number(x.recipient_count)||0)-(Number(x.read_count)||0)}</span></div></article>`).join('');
+  return;
+ }
+ $('notificationList').innerHTML=cards+rows.map(x=>`<article class="card section" style="border-color:var(--accent)"><div class="row"><b>${esc(x.title)}</b><span class="badge warn">جديد</span></div><div class="notes">${esc(x.message)}</div><div class="meta"><span>${date(x.created_at)}</span></div><div class="actions"><button class="outline" data-read-notification="${esc(x.id)}">تحديد كمقروء</button></div></article>`).join('')||'<div class="empty card">لا توجد إشعارات جديدة</div>';
+}
+async function sendNotification(e){
+e.preventDefault();if(!admin())return;
+const title=$('notificationTitle').value.trim(),message=$('notificationMessage').value.trim(),btn=$('sendNotificationSave');
+if(!title||!message)return;
+setBusy(btn,true);
+try{const count=await rpc('evacon_send_notification',{p_title:title,p_message:message});
+$('notificationDialog').close();$('notificationForm').reset();notify('تم إرسال الإشعار إلى '+count+' موظف');await refresh();page('notifications');}
+catch(e){err(e);}finally{setBusy(btn,false);}
+}
+async function markNotificationRead(id){
+try{await rpc('evacon_mark_notification_read',{p_id:id});state.notifications=state.notifications.filter(x=>x.id!==id);renderNotifications();}
+catch(e){err(e);}
+}
+function offerRequestOptions(selected=''){
+ const rows=state.requests.filter(r=>r.status!=='done');
+ $('oRequest').innerHTML='<option value="">اختر طلب المشتري</option>'+rows.map(r=>`<option value="${esc(String(r.id))}" ${String(r.id)===String(selected)?'selected':''}>${esc(r.name)} — ${esc(r.area||'منطقة غير محددة')} — ${esc(r.agent||'')}</option>`).join('');
+ updateOfferRequestHint();
+}
+function updateOfferRequestHint(){
+ const r=state.requests.find(x=>String(x.id)===$('oRequest').value);
+ $('offerRequestHint').textContent=r?`العميل: ${r.name} | المنطقة: ${r.area||'غير محددة'} | الميزانية: ${r.budget||money(r.budget_max)} | الموظف: ${r.agent||'غير محدد'}`:'اختار الطلب المرتبط بالترشيح قبل الإرسال.';
+}
+function toggleCommission(){const fromOwner=$('oSource').value==='مالك';$('oCommission').required=fromOwner;$('commissionRequired').textContent=fromOwner?'* (إلزامية عند التعامل مع مالك مباشر)':'(اختيارية عند التعامل مع بروكر)';}
+function openOffer(selectedRequest=''){
+ if(admin())return alert('ترشيح الشقق يُرسل من الموظف إلى الأدمن فقط.');
+ $('offerForm').reset();offerRequestOptions(selectedRequest);toggleCommission();$('offerSubmitBy').textContent='اكتب اسمك في الخانة. حسابك مسجل تلقائيًا في سجل النظام للمراجعة.';
+ if(!state.requests.some(r=>r.status!=='done'))return alert('لا يوجد طلب مفتوح متاح حاليًا.');
+ $('offerDialog').showModal();
+}
+const offerStatuses={pending:['approved','rejected'],approved:['viewing','rejected'],viewing:['negotiation','rejected'],negotiation:['rejected'],rejected:['approved']};
+function offerOptionBadge(v){return `<span class="badge ${v==='rejected'?'red':v==='pending'?'warn':'_'}">${esc(offerLabels[v]||v)}</span>`;}
+function renderOffers(){
+ const items=state.offers||[], own=admin()?items:items.filter(o=>o.created_by===state.user?.id);
+ const pending=own.filter(o=>o.status==='pending').length;
+ $('offerCount').innerHTML=(admin()?pending:state.offerAlerts.filter(x=>!x.read_at).length)?`<span class="counter">${admin()?pending:state.offerAlerts.filter(x=>!x.read_at).length}</span>`:'';
+ $('offerSummary').innerHTML=[['إجمالي الترشيحات',own.length],['في انتظار المراجعة',pending],['مقبولة للعرض',own.filter(o=>o.status==='approved').length],['مرفوضة',own.filter(o=>o.status==='rejected').length]].map(([l,v])=>`<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join('');
+ const oldReq=$('offerRequestFilter').value, requests=state.requests;
+ $('offerRequestFilter').innerHTML='<option value="">كل الطلبات</option>'+requests.map(r=>`<option value="${esc(String(r.id))}">${esc(r.name)} — ${esc(r.area||'')}</option>`).join('');
+ $('offerRequestFilter').value=[...$('offerRequestFilter').options].some(o=>o.value===oldReq)?oldReq:'';
+ const search=norm($('offerSearch').value), status=$('offerStatus').value,req=$('offerRequestFilter').value;
+ const results=own.filter(o=>(!search||norm([o.project,o.area,o.request_name,o.employee_name,o.contact_name,o.status].join(' ')).includes(search))&&(!status||o.status===status)&&(!req||o.request_id===req));
+ $('offerList').innerHTML=results.map(o=>`<article class="card offer-${esc(o.status)}"><div class="row"><h3>🏠 ${blank(o.project)}</h3>${offerOptionBadge(o.status)}</div>
+ <div class="offer-topline"><span class="badge gray">طلب: ${blank(o.request_name||o.request_id)}</span><span class="badge gray">👤 ${blank(o.employee_name)}</span></div>
+ <div class="meta"><span>📍 ${blank(o.area)}</span><span>📐 ${blank(o.size_m2)} م²</span><span>💰 ${money(o.price)}</span><span>🏢 ${blank(o.property_type)}</span><span>🗓 ${date(o.created_at)}</span></div>
+ <div class="detail-grid details">${valCell('مصدر الشقة',o.source_type)}${valCell('اسم المالك / البروكر',o.contact_name)}${admin()?valCell('رقم المالك / البروكر',o.contact_phone):''}${valCell('العمولة',o.commission_details)}${valCell('الدور',o.floor)}${valCell('الغرف / الحمامات',(o.bedrooms??'—')+' / '+(o.bathrooms??'—'))}${valCell('التشطيب',o.finishing)}${valCell('الواجهة',o.facing)}${valCell('المعاينة',o.viewing_available)}${valCell('المفتاح',o.keys_holder)}${valCell('السعر قابل للتفاوض',o.negotiable)}${valCell('آخر تحديث',date(o.updated_at))}</div>
+ ${o.notes?`<div class="notes">📝 ${esc(o.notes)}</div>`:''}
+ ${o.rejection_reason?`<div class="notes" style="border:1px solid var(--danger)"><b>سبب الرفض:</b> ${esc(o.rejection_reason)}</div>`:''}
+ ${o.review_note?`<div class="notes"><b>تعليق المسؤول:</b> ${esc(o.review_note)}</div>`:''}
+ <div class="actions">${admin()?`<button class="primary" data-review-offer="${esc(o.id)}">تغيير القرار / المرحلة</button><button class="danger" data-delete-offer="${esc(o.id)}">حذف الترشيح</button>`:''}<button data-offer-history="${esc(o.id)}">📋 سجل القرارات</button></div></article>`).join('')||'<div class="empty card">لا توجد ترشيحات مطابقة.</div>';
+}
+async function submitOffer(e){
+ e.preventDefault();const btn=$('offerSubmitBtn');const v={request_id:$('oRequest').value,employee_name:$('oEmployeeName').value.trim(),project:$('oProject').value.trim(),area:$('oArea').value.trim(),property_type:$('oType').value,size_m2:paramNum('oSize'),price:paramNum('oPrice'),floor:$('oFloor').value.trim(),bedrooms:paramNum('oBeds'),bathrooms:paramNum('oBaths'),finishing:$('oFinish').value,facing:$('oFacing').value.trim(),source_type:$('oSource').value,contact_name:$('oContact').value.trim(),contact_phone:$('oPhone').value.trim(),commission_details:$('oCommission').value.trim(),viewing_available:$('oViewing').value.trim(),keys_holder:$('oKeys').value.trim(),negotiable:$('oNegotiable').value,notes:$('oNotes').value.trim()};
+ if(!v.employee_name||!v.request_id||!v.project||!v.area||!(v.size_m2>0)||!(v.price>0)||!v.contact_name||!v.contact_phone)return alert('كمّل البيانات المطلوبة أولًا.');
+ if(v.source_type==='مالك'&&!v.commission_details)return alert('لازم تكتب تفاصيل العمولة عند التعامل مع مالك مباشر.');
+ setBusy(btn,true);try{await rpc('evacon_v5_employee_offer_submit',{p_payload:v});$('offerDialog').close();notify('تم إرسال الشقة للمسؤول وهي الآن في انتظار المراجعة.');await refresh();page('offers');}catch(e){err(e);}finally{setBusy(btn,false);}
+}
+function openOfferReview(id){
+ if(!admin())return;
+ const o=state.offers.find(x=>x.id===id);if(!o)return;
+ const options=(offerStatuses[o.status]||[]);if(!options.length)return alert('لا توجد مراحل تالية متاحة.');
+ state.offerReviewId=id;$('offerReviewForm').reset();$('offerReviewContext').textContent=`${o.project} | ${o.request_name} | مقدّمة بواسطة: ${o.employee_name} | الحالة الحالية: ${offerLabels[o.status]}`;
+ $('offerReviewStatus').innerHTML=options.map(x=>`<option value="${esc(x)}">${esc(offerLabels[x])}</option>`).join('');toggleOfferReject();$('offerReviewDialog').showModal();
+}
+function toggleOfferReject(){const r=$('offerReviewStatus').value==='rejected';$('offerRejectSection').classList.toggle('hide',!r);$('offerRejectReason').required=r;}
+async function saveOfferReview(e){
+ e.preventDefault();if(!admin())return;const id=state.offerReviewId, status=$('offerReviewStatus').value,reason=$('offerRejectReason').value.trim(),comment=$('offerReviewNote').value.trim(),btn=$('offerReviewSave');
+ if(status==='rejected'&&!reason)return alert('اكتب سبب الرفض قبل الإرسال.');
+ setBusy(btn,true);try{await rpc('evacon_offer_change_status',{p_id:id,p_status:status,p_rejection_reason:reason,p_review_note:comment});$('offerReviewDialog').close();notify('تم تحديث الحالة، واترسل إشعار للموظف.');await refresh();}catch(e){err(e);}finally{setBusy(btn,false);}
+}
+async function openOfferHistory(id){
+ const o=state.offers.find(x=>x.id===id);if(!o)return;$('offerHistoryTitle').textContent='سجل الترشيح: '+o.project;$('offerHistoryBody').innerHTML='<div class="loading">جارٍ التحميل...</div>';$('offerHistoryDialog').showModal();
+ try{const list=await rpc('evacon_offer_history',{p_id:id});$('offerHistoryBody').innerHTML=(list||[]).map(x=>`<div class="card section"><div class="row"><b>${esc(offerLabels[x.to_status]||x.to_status)}</b><span class="sub">${date(x.created_at)}</span></div><div class="meta">👤 ${blank(x.actor_name)}</div>${x.note?`<div class="notes">${esc(x.note)}</div>`:''}</div>`).join('')||'<div class="empty">لا يوجد سجل.</div>';}catch(e){$('offerHistoryBody').textContent=e.message;}
+}
+function offerAlertCards(){return state.offerAlerts.filter(x=>!x.read_at).map(x=>`<article class="card section offer-notif"><div class="row"><b>📨 ${esc(x.title)}</b><span class="badge warn">جديد</span></div><div class="notes">${esc(x.message)}</div><div class="meta"><span>${date(x.created_at)}</span></div><div class="actions"><button class="outline" data-read-offer-alert="${esc(x.id)}">تحديد كمقروء</button><button data-goto-offer="${esc(x.offer_id)}">عرض الترشيح</button></div></article>`).join('');}
+async function markOfferAlertRead(id){try{await rpc('evacon_offer_mark_alert_read',{p_id:id});state.offerAlerts=state.offerAlerts.filter(x=>x.id!==id);renderNotifications();renderOffers();}catch(e){err(e);}}
+function gotoOffer(id){const o=state.offers.find(x=>x.id===id);if(!o)return;page('offers');$('offerSearch').value=o.project;$('offerStatus').value='';$('offerRequestFilter').value='';renderOffers();}
+async function pollOfferData(){if(!state.user)return;try{
+ const results=await Promise.allSettled([
+  rpc('evacon_v5_offer_list'),rpc('evacon_offer_alert_list'),
+  rpc('evacon_list_notifications'),rpc('evacon_v4_staff_alert_list'),
+  rpc('evacon_v5_shared_staff_requests'),rpc('evacon_v5_shared_legacy_requests')
+ ]);
+ if(results[0].status==='fulfilled')state.offers=(results[0].value||[]).map(o=>admin()?o:(({contact_phone,...safe})=>safe)(o));
+ if(results[1].status==='fulfilled')state.offerAlerts=results[1].value||[];
+ if(results[2].status==='fulfilled')state.notifications=results[2].value||[];
+ if(results[3].status==='fulfilled')state.staffAlerts=results[3].value||[];
+ // Update new requests without requiring a full page reload. Keep legacy requests unchanged.
+ if(results[4].status==='fulfilled'){
+  const legacy=state.requests.filter(r=>!isStaffRequest(r.id));
+  const staff=(results[4].value||[]).map(r=>admin()?r:(({phone,client_phone,phone_number,mobile,whatsapp,...safe})=>safe)(r));
+  state.requests=[...legacy,...staff];
+  renderRequests();
+ }
+ if(results[5].status==='fulfilled'){
+  const staff=state.requests.filter(r=>isStaffRequest(r.id));
+  const legacy=(results[5].value||[]).map(r=>admin()?r:(({phone,client_phone,phone_number,mobile,whatsapp,...safe})=>safe)(r));
+  state.requests=[...legacy,...staff];renderRequests();renderOffers();
+ }
+ renderOffers();renderNotifications();
+ }catch(e){console.warn('Offer polling:',e);}}
+
+function aggregateAgents(requests){const map=new Map();for(const r of requests){const k=r.agent||'غير محدد';if(!map.has(k))map.set(k,{name:k,total:0,won:0,viewing:0,closed:0});const x=map.get(k);x.total++;if(stageOf(r)==='won')x.won++;if(stageOf(r)==='viewing')x.viewing++;}
+for(const x of map.values())x.closed=state.followups.filter(f=>f.completed_at&&requests.some(r=>r.id===f.request_id&&((r.agent||'غير محدد')===x.name))).length;return [...map.values()].sort((a,b)=>b.total-a.total);}
+function renderReports(){const rows=allowedRequests(),agents=aggregateAgents(rows),wins=rows.filter(r=>stageOf(r)==='won').length,followDone=state.followups.filter(f=>f.completed_at&&rows.some(r=>r.id===f.request_id)).length,conv=rows.length?Math.round(wins*100/rows.length):0;
+$('reportStats').innerHTML=[['الطلبات',rows.length],['الصفقات الناجحة',wins],['نسبة النجاح',conv+'%'],['المتابعات المنتهية',followDone]].map(([label,value])=>`<div class="stat"><b>${value}</b><span>${label}</span></div>`).join('');$('agentReport').innerHTML=agents.map(x=>`<tr><td>${blank(x.name)}</td><td>${x.total}</td><td>${x.won}</td><td>${x.viewing}</td><td>${x.closed}</td><td>${x.total?Math.round(x.won*100/x.total):0}%</td></tr>`).join('')||'<tr><td colspan="6">لا توجد بيانات</td></tr>';
+const areaMap=new Map();for(const r of rows){const area=r.area||'غير محدد';areaMap.set(area,(areaMap.get(area)||0)+1);}const top=[...areaMap].sort((a,b)=>b[1]-a[1]).slice(0,12),max=top[0]?.[1]||1;$('areasReport').innerHTML=top.map(([area,count])=>`<div class="section"><div class="row"><span>${blank(area)}</span><b>${count}</b></div><div class="bar"><i style="width:${count/max*100}%"></i></div></div>`).join('')||'<div class="empty">لا توجد بيانات</div>';
+}
+async function loadLogs(){if(!admin())return;const [a,b]=await Promise.allSettled([rpc('evacon_list_audit',{p_limit:350}),sb.from('activity_logs').select('action,user_email,details,created_at').order('created_at',{ascending:false}).limit(150)]);
+const modern=a.status==='fulfilled'?a.value||[]:[];const legacy=b.status==='fulfilled'&&!b.value.error?b.value.data||[]:[];
+state.logs=modern.map(x=>({...x,origin:'v2'})).concat(legacy.map(x=>({...x,origin:'legacy'}))).sort((x,y)=>new Date(y.created_at)-new Date(x.created_at));renderLogs();if(a.status==='rejected')status('تعذر تحميل سجل التغييرات: '+a.reason.message,true);}
+function renderLogs(){const q=norm($('auditSearch').value),type=$('auditAction').value;const rows=state.logs.filter(x=>(!type||(type==='login'?['login','logout'].includes(x.action):x.action.startsWith(type)))&&(!q||norm([x.action,x.actor_email,x.user_email,x.entity_id,x.new_data?.project,x.old_data?.project].join(' ')).includes(q)));
+$('auditList').innerHTML=rows.slice(0,350).map(x=>{const after=x.new_data||{},before=x.old_data||{},changed=Object.keys(after).filter(k=>JSON.stringify(after[k])!==JSON.stringify(before[k])&&!['updated_at','created_at','archived_by'].includes(k)).slice(0,8);return `<div class="card section"><div class="row"><b>${blank(auditLabels[x.action]||x.action)}</b><span class="sub">${date(x.created_at)}</span></div><div class="meta"><span>👤 ${blank(x.actor_email||x.user_email)}</span><span>${blank(x.entity_id)}</span></div>${x.origin==='v2'?`<div class="small muted">${changed.map(k=>esc(fieldLabels[k]||k)).join('، ')}</div>`:''}</div>`;}).join('')||'<div class="empty">لا توجد سجلات</div>';
+}
+function openRequest(r){
+ if(r&&!admin())return;
+ state.currentRequest=r?.id||null;
+ $('requestForm').reset();$('requestTitle').textContent=r?'تعديل طلب':'طلب عميل جديد';
+ const f={rName:'name',rPhone:'phone',rType:'type',rPtype:'ptype',rArea:'area',rBudget:'budget',rAgent:'agent',rPriority:'priority',rNotes:'notes',rMinPrice:'budget_min',rMaxPrice:'budget_max',rMinSize:'min_size_m2',rMaxSize:'max_size_m2'};
+ Object.entries(f).forEach(([id,k])=>{if(r?.[k]!==null&&r?.[k]!==undefined)$(id).value=r[k];});
+ $('rAgent').readOnly=!admin()||isStaffRequest(r?.id);
+ if(!admin()){$('rAgent').value=state.profile?.full_name||'';$('rPhone').value='';}
+ $('requestDialog').showModal();
+}
+function openProperty(p){if(!admin())return;state.currentProperty=p?.id||null;$('propertyForm').reset();$('propertyTitle').textContent=p?'تعديل الوحدة':'وحدة جديدة';const f={pCode:'code',pProject:'project',pArea:'area',pType:'property_type',pListing:'listing_type',pState:'status',pSize:'size_m2',pPrice:'price',pFloor:'floor',pBeds:'bedrooms',pBaths:'bathrooms',pSource:'source_type',pContact:'contact_name',pContactPhone:'contact_phone',pNotes:'notes'};Object.entries(f).forEach(([id,k])=>{if(p?.[k]!==null&&p?.[k]!==undefined)$(id).value=p[k];});$('propertyDialog').showModal();}
+async function saveRequest(e){
+ e.preventDefault();const btn=$('requestSaveBtn');
+ const v={id:state.currentRequest||'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,8),name:$('rName').value.trim(),phone:$('rPhone').value.trim(),type:$('rType').value,ptype:$('rPtype').value,area:$('rArea').value.trim(),budget:$('rBudget').value.trim(),agent:admin() ? $('rAgent').value.trim() : (state.profile?.full_name||''),priority:$('rPriority').value,notes:$('rNotes').value.trim(),budget_min:paramNum('rMinPrice'),budget_max:paramNum('rMaxPrice'),min_size_m2:paramNum('rMinSize'),max_size_m2:paramNum('rMaxSize')};
+ if(!v.name||!v.agent)return alert('اكتب اسم العميل، ولازم يكون اسم الموظف مضبوط في حسابه.');
+ if(v.budget_min!==null&&v.budget_max!==null&&v.budget_min>v.budget_max)return alert('الحد الأدنى للميزانية أكبر من الأقصى');
+ if(v.min_size_m2!==null&&v.max_size_m2!==null&&v.min_size_m2>v.max_size_m2)return alert('الحد الأدنى للمساحة أكبر من الأقصى');
+ if(admin()&&v.phone){const duplicate=state.requests.find(r=>r.id!==v.id&&v.phone&&norm(r.phone)===norm(v.phone));if(duplicate&&!confirm('رقم العميل موجود بالفعل في طلب باسم '+duplicate.name+'؛ هل تريد الحفظ رغم ذلك؟'))return;}
+ setBusy(btn,true);
+ try{
+  if(admin()){
+   if(isStaffRequest(state.currentRequest))await rpc('evacon_v4_staff_request_admin_update',{p_id:staffUuid(state.currentRequest),p_payload:v});
+   else await rpc('evacon_save_request',{p_payload:v});
+  }else{
+   await rpc('evacon_v4_staff_request_create',{p_payload:v});
+  }
+  $('requestDialog').close();$('requestForm').reset();notify(admin()?'تم حفظ الطلب':'تمت إضافة طلبك وإشعار الأدمن. رقم العميل مش هيظهر في حساب الموظف بعد الحفظ.');
+  await refresh();page('requests');
+ }catch(e){err(e);}finally{setBusy(btn,false);}
+}
+async function saveProperty(e){e.preventDefault();if(!admin())return;const btn=$('propertySaveBtn');const v={id:state.currentProperty||'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,8),code:$('pCode').value.trim()||null,project:$('pProject').value.trim(),area:$('pArea').value.trim(),property_type:$('pType').value,listing_type:$('pListing').value,status:$('pState').value,size_m2:paramNum('pSize'),price:paramNum('pPrice'),floor:$('pFloor').value.trim()||null,bedrooms:paramNum('pBeds'),bathrooms:paramNum('pBaths'),source_type:$('pSource').value,contact_name:$('pContact').value.trim()||null,contact_phone:$('pContactPhone').value.trim()||null,notes:$('pNotes').value.trim()||null};
+if(!v.project||!v.area||!(v.size_m2>0)||!(v.price>0))return alert('أدخل بيانات الشقة المطلوبة');if(v.code&&state.properties.some(p=>p.id!==v.id&&!p.archived_at&&norm(p.code)===norm(v.code)))return alert('كود الوحدة موجود بالفعل');
+const maybe=state.properties.find(p=>p.id!==v.id&&!p.archived_at&&norm(p.project)===norm(v.project)&&norm(p.area)===norm(v.area)&&String(p.floor||'')===String(v.floor||'')&&Number(p.size_m2)===v.size_m2);if(maybe&&!confirm('هناك وحدة شبيهة جدًا: '+(maybe.code||maybe.project)+'. هل تريد المتابعة؟'))return;
+setBusy(btn,true);try{await rpc('evacon_save_property',{p_payload:v});$('propertyDialog').close();notify('تم حفظ الوحدة');await refresh();}catch(e){err(e);}finally{setBusy(btn,false);}}
+async function safeAction(name,args,success){try{await rpc(name,args);notify(success);await refresh();}catch(e){err(e);}}
+function openFollow(requestId){const r=state.requests.find(x=>x.id===requestId);if(!r||!canFollow(r))return alert('المتابعة متاحة للموظف المسؤول أو الأدمن فقط');state.followRequestId=requestId;$('followForm').reset();$('followTitle').textContent='متابعة: '+r.name;const d=new Date(Date.now()+3600000);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());$('followDate').value=d.toISOString().slice(0,16);$('followDialog').showModal();}
+async function saveFollow(e){e.preventDefault();const d=$('followDate').value;if(!d||!$('followNote').value.trim())return;try{if(isStaffRequest(state.followRequestId))await rpc('evacon_v4_staff_followup_add',{p_request_id:staffUuid(state.followRequestId),p_due_at:new Date(d).toISOString(),p_note:$('followNote').value.trim(),p_type:$('followType').value});else await rpc('evacon_add_followup',{p_request_id:state.followRequestId,p_due_at:new Date(d).toISOString(),p_note:$('followNote').value.trim(),p_type:$('followType').value});$('followDialog').close();notify('تم تسجيل المتابعة');await refresh();}catch(e){err(e);}}
+function parseLegacyBudget(s){const text=String(s||'').replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/,/g,'');const m=text.match(/(\d+(?:\.\d+)?)/);if(!m)return null;let value=+m[1];if(/مليون|million/i.test(text))value*=1000000;else if(/الف|ألف|thousand/i.test(text))value*=1000;return value>0?value:null;}
+function matching(r){const expectedType=r.type==='شراء'?'بيع':r.type==='إيجار'?'إيجار':null;if(!expectedType)return {message:'المطابقة التلقائية مخصصة لطلبات الشراء والإيجار، وليست طلبات تسويق عقارات الملاك.',items:[]};
+const max=r.budget_max!=null?+r.budget_max:parseLegacyBudget(r.budget),min=r.budget_min!=null?+r.budget_min:null,minSize=r.min_size_m2!=null?+r.min_size_m2:null,maxSize=r.max_size_m2!=null?+r.max_size_m2:null;
+let available=state.properties.filter(p=>!p.archived_at&&p.status==='متاحة'&&(p.listing_type||'بيع')===expectedType);
+if(max!==null)available=available.filter(p=>+p.price<=max);if(min!==null)available=available.filter(p=>+p.price>=min);if(minSize!==null)available=available.filter(p=>+p.size_m2>=minSize);if(maxSize!==null)available=available.filter(p=>+p.size_m2<=maxSize);
+const scored=available.map(p=>{let score=0,weight=0,reasons=[];if(r.area){weight+=50;if(norm(p.area)===norm(r.area)){score+=50;reasons.push('المنطقة مطابقة');}else if(norm(p.area).includes(norm(r.area))||norm(r.area).includes(norm(p.area))){score+=28;reasons.push('منطقة قريبة بالنص');}}
+if(r.ptype){weight+=30;if(norm(p.property_type)===norm(r.ptype)){score+=30;reasons.push('نوع العقار مطابق');}}
+if(max!==null||min!==null){weight+=12;score+=12;reasons.push('داخل الميزانية');}
+if(minSize!==null||maxSize!==null){weight+=8;score+=8;reasons.push('المساحة مناسبة');}
+return {property:p,score:weight?Math.round(score*100/weight):100,reasons};}).sort((a,b)=>b.score-a.score||+a.property.price-+b.property.price);
+return {message: max===null?'الميزانية غير محددة رقميًا، فنتائج السعر لم تُستبعد.':'تم استبعاد الوحدات خارج الميزانية أو المساحة المحددة.',items:scored.slice(0,20)};}
+function showMatches(id){const r=state.requests.find(x=>x.id===id);if(!r)return;const result=matching(r);$('matchTitle').textContent='وحدات مناسبة لـ '+r.name;$('matchList').innerHTML=`<p class="sub">${esc(result.message)} التقييم تقريبي، وليس ضمانًا لتوافر الوحدة الفعلي.</p>`+(result.items.map(m=>{const p=m.property;return `<div class="match"><div class="row"><b>${blank(p.project)} — ${blank(p.code)}</b><span class="badge">مطابقة ${m.score}%</span></div><div>${blank(p.area)} · ${blank(p.property_type)} · ${blank(p.size_m2)} م² · ${money(p.price)}</div><div class="sub">${esc(m.reasons.join(' · ')||'لا توجد معايير كافية')}</div><div class="actions"><button data-match-property="${esc(p.id)}">فتح الوحدة</button></div></div>`;}).join('')||'<div class="empty">لا توجد وحدات مناسبة حاليًا</div>');$('matchDialog').showModal();}
+function safeUrl(text){try{const u=new URL(text);return u.protocol==='https:'?u.href:null;}catch{return null;}}
+function openMedia(id){const p=state.properties.find(x=>x.id===id);if(!p)return;state.mediaId=id;$('mediaTitle').textContent='وسائط: '+p.project;$('mediaFiles').value='';$('mediaUrl').value='';$('mediaAdmin').classList.toggle('hide',!admin()||!!p.archived_at);renderMediaDialog();$('mediaDialog').showModal();}
+function renderMediaDialog(){$('mediaCurrent').innerHTML=mediaTiles(state.mediaId,true)?`<div class="media-grid">${mediaTiles(state.mediaId,true)}</div>`:'<div class="empty">لا توجد صور أو فيديوهات</div>';}
+async function uploadFiles(){if(!admin())return;const files=[...$('mediaFiles').files];if(!files.length)return alert('اختر الصور أو الفيديوهات');if(files.length>12)return alert('ارفع 12 ملفًا بحد أقصى في المرة الواحدة');const types={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','video/mp4':'mp4','video/webm':'webm'};const btn=$('uploadMedia');setBusy(btn,true);let successes=0;try{for(const f of files){if(!types[f.type]||f.size>52428800){notify('ملف غير مدعوم أو أكبر من 50MB: '+f.name);continue;}const path=state.mediaId+'/'+(self.crypto?.randomUUID?.()||Date.now()+'-'+Math.random().toString(36).slice(2))+'.'+types[f.type];const {error}=await sb.storage.from(MEDIA_BUCKET).upload(path,f,{contentType:f.type,upsert:false});if(error)throw error;
+try{await rpc('evacon_add_media',{p_property_id:state.mediaId,p_media_type:f.type.startsWith('image/')?'image':'video',p_storage_path:path,p_external_url:null});successes++;}catch(e){await sb.storage.from(MEDIA_BUCKET).remove([path]);throw e;}}
+await refresh();renderMediaDialog();notify('تم رفع '+successes+' ملف');}catch(e){err(e);}finally{setBusy(btn,false);}}
+async function addVideoUrl(){if(!admin())return;const url=safeUrl($('mediaUrl').value);if(!url)return alert('أدخل رابط فيديو صحيح يبدأ بـ https://');try{await rpc('evacon_add_media',{p_property_id:state.mediaId,p_media_type:'video',p_storage_path:null,p_external_url:url});$('mediaUrl').value='';await refresh();renderMediaDialog();notify('تم إضافة رابط الفيديو');}catch(e){err(e);}}
+async function removeMedia(id){if(!admin()||!confirm('حذف هذا الملف من الوحدة؟'))return;try{const path=await rpc('evacon_delete_media',{p_id:id});if(path){const {error}=await sb.storage.from(MEDIA_BUCKET).remove([path]);if(error)notify('حُذف من سجل الوحدة، لكن فشل حذف الملف من التخزين: '+error.message);}await refresh();renderMediaDialog();}catch(e){err(e);}}
+async function history(id){if(!admin())return;const p=state.properties.find(x=>x.id===id);$('historyTitle').textContent='سجل: '+(p?.project||id);$('historyList').innerHTML='<div class="loading">جارٍ التحميل...</div>';$('historyDialog').showModal();try{const list=await rpc('evacon_property_history',{p_id:id});$('historyList').innerHTML=(list||[]).map(x=>{const a=x.old_data||{},b=x.new_data||{},keys=Object.keys(b).filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k])&&!['updated_at','created_at','archived_by'].includes(k));const changes=keys.map(k=>`<div class="small">${esc(fieldLabels[k]||k)}: ${blank(a[k])} ⇐ ${blank(b[k])}</div>`).join('');return `<div class="card section"><b>${blank(auditLabels[x.action]||x.action)}</b><div class="sub">${date(x.created_at)} · ${blank(x.actor_email)}</div><div class="details">${changes||'تفاصيل العملية محفوظة'}</div></div>`;}).join('')||'<div class="empty">لا يوجد سجل جديد بعد تشغيل التحديث</div>';}catch(e){$('historyList').textContent=e.message;}}
+// Excel XLSX export, generated locally with OOXML (no external library).
+const xml=s=>String(s??'').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+function xlsxSheet(rows){const col=i=>{let s='';for(i++;i;i=Math.floor((i-1)/26))s=String.fromCharCode(65+(i-1)%26)+s;return s;};return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0" rightToLeft="1"/></sheetViews><sheetData>'+rows.map((row,i)=>`<row r="${i+1}">`+row.map((v,j)=>{const ref=col(j)+(i+1);return typeof v==='number'&&Number.isFinite(v)?`<c r="${ref}"><v>${v}</v></c>`:`<c r="${ref}" t="inlineStr"><is><t xml:space="preserve">${xml(v)}</t></is></c>`;}).join('')+'</row>').join('')+'</sheetData></worksheet>';}
+function crc32(bytes){let c=0xffffffff;for(let i=0;i<bytes.length;i++){c^=bytes[i];for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
+function zipStore(files){const encode=new TextEncoder(),parts=[],central=[];let offset=0;const u16=(d,o,v)=>d.setUint16(o,v,true),u32=(d,o,v)=>d.setUint32(o,v>>>0,true);
+for(const [name,content] of files){const nameBytes=encode.encode(name),bytes=encode.encode(content),crc=crc32(bytes);const head=new Uint8Array(30+nameBytes.length),h=new DataView(head.buffer);u32(h,0,0x04034b50);u16(h,4,20);u16(h,6,0);u16(h,8,0);u32(h,14,crc);u32(h,18,bytes.length);u32(h,22,bytes.length);u16(h,26,nameBytes.length);head.set(nameBytes,30);parts.push(head,bytes);const ch=new Uint8Array(46+nameBytes.length),v=new DataView(ch.buffer);u32(v,0,0x02014b50);u16(v,4,20);u16(v,6,20);u32(v,16,crc);u32(v,20,bytes.length);u32(v,24,bytes.length);u16(v,28,nameBytes.length);u32(v,42,offset);ch.set(nameBytes,46);central.push(ch);offset+=head.length+bytes.length;}
+const centralLen=central.reduce((s,p)=>s+p.length,0),end=new Uint8Array(22),d=new DataView(end.buffer);u32(d,0,0x06054b50);u16(d,8,files.length);u16(d,10,files.length);u32(d,12,centralLen);u32(d,16,offset);const pieces=[...parts,...central,end],length=pieces.reduce((s,p)=>s+p.length,0),out=new Uint8Array(length);let pos=0;for(const x of pieces){out.set(x,pos);pos+=x.length;}return out;}
+function workbook(sheets){const list=sheets.map(([name,rows],i)=>[`xl/worksheets/sheet${i+1}.xml`,xlsxSheet(rows)]);const ct='<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'+sheets.map((s,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')+'</Types>';
+const wk='<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>'+sheets.map(([name],i)=>`<sheet name="${xml(name.slice(0,31))}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join('')+'</sheets></workbook>';
+const rel='<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>';
+const wkrel='<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map((s,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join('')+'</Relationships>';
+return new Blob([zipStore([['[Content_Types].xml',ct],['_rels/.rels',rel],['xl/workbook.xml',wk],['xl/_rels/workbook.xml.rels',wkrel],...list])],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});}
+function downloadBlob(blob,name){const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+function requestTable(rows){const out=[['اسم العميل','الهاتف','النوع','العقار','المنطقة','الموظف','الميزانية','السعر الأدنى','السعر الأقصى','المساحة الأدنى','المساحة الأقصى','المرحلة','التاريخ'],...rows.map(r=>[r.name,admin()?r.phone||'':'',r.type,r.ptype,r.area,r.agent,r.budget,r.budget_min??'',r.budget_max??'',r.min_size_m2??'',r.max_size_m2??'',stageLabels[stageOf(r)],date(r.created_at)])];if(!admin())out.forEach(row=>row.splice(1,1));return out;}
+function propertyTable(rows){const out=[['الكود','المشروع','المنطقة','نوع الوحدة','نوع العرض','المساحة','السعر','الدور','الغرف','الحمامات','المصدر','اسم المالك','رقم المالك','الحالة','ملاحظات'],...rows.map(p=>[p.code,p.project,p.area,p.property_type,p.listing_type||'بيع',+p.size_m2,+p.price,p.floor,p.bedrooms??'',p.bathrooms??'',p.source_type,p.contact_name,admin()?p.contact_phone||'':'',p.archived_at?'مؤرشفة':p.status,p.notes])];if(!admin())out.forEach(row=>row.splice(12,1));return out;}
+function reportTable(){return [['الموظف','الطلبات','الصفقات الناجحة','المعاينات','المتابعات المكتملة','نسبة النجاح'],...aggregateAgents(allowedRequests()).map(a=>[a.name,a.total,a.won,a.viewing,a.closed,a.total?Math.round(a.won*100/a.total):0])];}
+function exportXlsx(kind){const rows=kind==='requests'?requestTable(filteredRequests()):kind==='properties'?propertyTable(filteredProperties()):reportTable();downloadBlob(workbook([[kind==='requests'?'طلبات العملاء':kind==='properties'?'مخزون الوحدات':'تقرير الأداء',rows]]),'Evacon_'+kind+'_'+new Date().toISOString().slice(0,10)+'.xlsx');notify('تم تجهيز ملف Excel');}
+function printHtml(title,rows){const heads=rows[0],data=rows.slice(1),html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>${esc(title)}</title><style>body{font:12px Tahoma,Arial,sans-serif;padding:18px;color:#182a32}table{border-collapse:collapse;width:100%}td,th{border:1px solid #cbd5d9;padding:7px;text-align:right;overflow-wrap:anywhere}th{background:#eef3f3}h2{color:#0b6b55}.info{font-size:11px;color:#64717a}button{padding:12px;background:#0b6b55;color:white;border:0;border-radius:8px}@media print{button{display:none}body{padding:0}@page{size:A4 landscape;margin:10mm}}</style></head><body><h2>Evacon — ${esc(title)}</h2><p class="info">${esc(date(Date.now()))} — البيانات حسب صلاحية الحساب والفلاتر الحالية</p><button onclick="window.print()">طباعة / حفظ PDF</button><table><thead><tr>${heads.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${data.map(row=>`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></body></html>`;
+const w=window.open('','_blank');if(!w){notify('المتصفح منع النافذة. اسمح بالنوافذ المنبثقة أو استخدم Excel.');return;}w.document.open();w.document.write(html);w.document.close();notify('اضغط طباعة / حفظ PDF من الصفحة المفتوحة');}
+function printKind(kind){if(kind==='requests'){const a=requestTable(filteredRequests());printHtml('تقرير الطلبات',a);}if(kind==='properties'){const a=propertyTable(filteredProperties());a.forEach(row=>row.splice(11,admin()?2:1));printHtml('مخزون الوحدات بدون بيانات اتصال الملاك',a);}if(kind==='report')printHtml('تقرير أداء الموظفين',reportTable());}
+async function logActivity(action,details){try{const {error}=await sb.rpc('log_user_activity',{p_action:action,p_details:details||{}});if(error)console.warn('Legacy log:',error.message);}catch(e){console.warn(e);}}
+async function login(){const email=$('loginEmail').value.trim(),password=$('loginPassword').value;if(!email||!password)return $('loginMessage').textContent='اكتب البريد وكلمة المرور';setBusy($('loginBtn'),true);$('loginMessage').textContent='جارٍ تسجيل الدخول...';try{const {data,error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;const {data:p,error:pe}=await sb.from('profiles').select('role').eq('id',data.user.id).single();if(pe||String(p?.role).trim().toLowerCase()!==$('loginRole').value){await sb.auth.signOut();throw new Error('نوع الحساب لا يطابق دور المستخدم');}await logActivity('login',{email});await enter(data.user);}catch(e){$('loginMessage').textContent=e.message;}finally{setBusy($('loginBtn'),false);}}
+// Event handlers
+$('loginBtn').onclick=login;$('loginPassword').onkeydown=e=>{if(e.key==='Enter')login();};$('logoutBtn').onclick=async()=>{await logActivity('logout',{});await sb.auth.signOut();showLogin();};$('refreshBtn').onclick=()=>refresh().catch(err);
+$('nav').onclick=e=>{const b=e.target.closest('button[data-page]');if(b)page(b.dataset.page);};$('dashboardAlerts').onclick=e=>{if(e.target.closest('[data-go-follow]'))page('followups');};
+$('sendNotificationBtn').onclick=()=>{if(admin()){$('notificationForm').reset();$('notificationDialog').showModal();}};$('notificationForm').onsubmit=sendNotification;$('notificationList').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.readNotification)markNotificationRead(b.dataset.readNotification);else if(b.dataset.readOfferAlert)markOfferAlertRead(b.dataset.readOfferAlert);else if(b.dataset.gotoOffer)gotoOffer(b.dataset.gotoOffer);else if(b.dataset.readStaffAlert)markStaffAlertRead(b.dataset.readStaffAlert);else if(b.dataset.gotoRequest)gotoStaffRequest(b.dataset.gotoRequest);};
+ $('addOffer').onclick=()=>openOffer();$('offerForm').onsubmit=submitOffer;$('offerReviewForm').onsubmit=saveOfferReview;$('oSource').onchange=toggleCommission;$('oRequest').onchange=updateOfferRequestHint;$('offerReviewStatus').onchange=toggleOfferReject;['offerSearch','offerStatus','offerRequestFilter'].forEach(id=>$(id).addEventListener(id==='offerSearch'?'input':'change',renderOffers));$('offerList').onclick=async e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.reviewOffer)openOfferReview(b.dataset.reviewOffer);else if(b.dataset.offerHistory)openOfferHistory(b.dataset.offerHistory);else if(b.dataset.deleteOffer&&admin()&&confirm('حذف الترشيح نهائيًا مع سجل قراراته وإشعاراته؟ لا يمكن التراجع.'))await safeAction('evacon_v5_admin_delete_offer',{p_id:b.dataset.deleteOffer},'تم حذف الترشيح');};
+$('addRequest').onclick=()=>openRequest(null);$('addProperty').onclick=()=>openProperty(null);$('requestForm').onsubmit=saveRequest;$('propertyForm').onsubmit=saveProperty;$('followForm').onsubmit=saveFollow;
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
+['requestSearch','requestStage','requestAgent'].forEach(id=>$(id).addEventListener(id==='requestSearch'?'input':'change',renderRequests));
+['propertySearch','propertyStatus','propertyListing','propertySource','propertyType','propertyPriceMin','propertyPriceMax','propertySizeMin','propertySizeMax','propertyRooms','propertySort','propertyArchive'].forEach(id=>$(id).addEventListener(['propertySearch','propertyPriceMin','propertyPriceMax','propertySizeMin','propertySizeMax','propertyRooms'].includes(id)?'input':'change',renderProperties));
+$('expandProperties').onclick=()=>{state.collapsed.clear();renderProperties();};$('collapseProperties').onclick=()=>{state.properties.forEach(p=>state.collapsed.add(p.id));renderProperties();};
+$('requestList').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const ds=b.dataset,id=ds.submitForRequest||ds.seeOffers||ds.match||ds.follow||ds.editRequest||ds.finish||ds.reopen||ds.stage||ds.deleteRequest;const r=state.requests.find(x=>x.id===id);if(ds.submitForRequest)openOffer(id);else if(ds.seeOffers){page('offers');$('offerSearch').value='';$('offerStatus').value='';$('offerRequestFilter').value=String(id);renderOffers();}else if(ds.match)showMatches(id);else if(ds.follow)openFollow(id);else if(ds.editRequest&&admin())openRequest(r);else if(ds.finish&&admin()){state.finishId=id;$('finishForm').reset();$('finishDialog').showModal();}else if(ds.reopen&&admin()&&confirm('إعادة فتح الطلب؟'))await safeAction(isStaffRequest(id)?'evacon_v4_staff_request_reopen':'evacon_reopen_request',{p_id:isStaffRequest(id)?staffUuid(id):id},'تمت إعادة فتح الطلب');else if(ds.stage&&admin()){state.stageId=id;$('stageValue').value=stageOf(r);$('stageDialog').showModal();}else if(ds.deleteRequest&&admin()&&confirm('حذف الطلب نهائيًا؟ ستُحذف الترشيحات والمتابعات المرتبطة به أيضًا ولا يمكن التراجع.'))await safeAction(isStaffRequest(id)?'evacon_v5_admin_delete_staff_request':'evacon_v5_admin_delete_legacy_request',{p_id:isStaffRequest(id)?staffUuid(id):id},'تم حذف الطلب');};
+$('stageForm').onsubmit=async e=>{e.preventDefault();try{await rpc(isStaffRequest(state.stageId)?'evacon_v4_staff_request_set_stage':'evacon_set_stage',{p_id:isStaffRequest(state.stageId)?staffUuid(state.stageId):state.stageId,p_stage:$('stageValue').value});$('stageDialog').close();await refresh();notify('تم تحديث مرحلة العميل');}catch(e){err(e);}};
+$('finishForm').onsubmit=async e=>{e.preventDefault();try{await rpc(isStaffRequest(state.finishId)?'evacon_v4_staff_request_finish':'evacon_finish_request',{p_id:isStaffRequest(state.finishId)?staffUuid(state.finishId):state.finishId,p_reason:$('finishReason').value,p_details:$('finishDetails').value.trim()});$('finishDialog').close();await refresh();notify('تم إنهاء الطلب');}catch(e){err(e);}};
+$('propertyList').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset,id=d.toggleProperty||d.openMedia||d.history||d.editProperty||d.archive||d.restore||d.deleteProperty,p=state.properties.find(x=>x.id===id);if(d.toggleProperty){state.collapsed.has(id)?state.collapsed.delete(id):state.collapsed.add(id);renderProperties();}else if(d.openMedia)openMedia(id);else if(d.history&&admin())history(id);else if(d.editProperty&&admin())openProperty(p);else if(d.archive&&admin()&&confirm('أرشفة الوحدة؟ لن يتم حذفها، ويمكن استعادتها لاحقًا.'))await safeAction('evacon_archive_property',{p_id:id},'تمت الأرشفة');else if(d.restore&&admin())await safeAction('evacon_restore_property',{p_id:id},'تمت الاستعادة');else if(d.deleteProperty&&admin()&&p?.archived_at&&confirm('تحذير: حذف الوحدة المؤرشفة نهائيًا من قاعدة البيانات؟ لا يمكن التراجع.'))await safeAction('evacon_v5_admin_delete_archived_property',{p_id:id},'تم حذف الوحدة المؤرشفة');};
+$('matchList').onclick=e=>{const b=e.target.closest('[data-match-property]');if(!b)return;$('matchDialog').close();$('propertyArchive').value='active';$('propertySearch').value=state.properties.find(p=>p.id===b.dataset.matchProperty)?.code||'';page('properties');};
+$('followTabs').onclick=e=>{const b=e.target.closest('[data-filter]');if(b){state.followFilter=b.dataset.filter;renderFollowups();}};$('followList').onclick=async e=>{const b=e.target.closest('[data-complete]');if(b&&confirm('تمت المتابعة؟'))await safeAction(String(b.dataset.complete).startsWith('sf_')?'evacon_v4_staff_followup_complete':'evacon_complete_followup',{p_id:String(b.dataset.complete).startsWith('sf_')?b.dataset.complete.slice(3):b.dataset.complete},'تم إنهاء المتابعة');};
+$('uploadMedia').onclick=uploadFiles;$('addMediaUrl').onclick=addVideoUrl;$('mediaCurrent').onclick=e=>{const b=e.target.closest('button[data-remove-media]');if(b)removeMedia(b.dataset.removeMedia);};
+$('auditSearch').oninput=renderLogs;$('auditAction').onchange=renderLogs;
+$('exportRequests').onclick=()=>exportXlsx('requests');$('exportProperties').onclick=()=>exportXlsx('properties');$('exportReport').onclick=()=>exportXlsx('report');$('printRequests').onclick=()=>printKind('requests');$('printProperties').onclick=()=>printKind('properties');$('printReport').onclick=()=>printKind('report');
+if(!window.supabase){$('loginMessage').textContent='فشل تحميل Supabase؛ تأكد من الاتصال بالإنترنت.';return;}
+sb=window.supabase.createClient(URL_SUPABASE,PUBLISHABLE_KEY);
+sb.auth.getSession().then(async ({data,error})=>{if(error)throw error;if(data.session)await enter(data.session.user);else showLogin();}).catch(e=>{$('loginMessage').textContent='تعذر فتح الجلسة: '+e.message;showLogin();});
+sb.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT')showLogin();});
+ setInterval(async()=>{if(state.user){await pollOfferData();if(admin()){try{state.sentNotifications=await rpc('evacon_admin_list_sent_notifications')||[];renderNotifications();}catch(e){console.warn(e);}}}},25000);
+ document.addEventListener('visibilitychange',async()=>{if(!document.hidden&&state.user){await pollOfferData();}});
+})();
+</script>
+</body></html>
