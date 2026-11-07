@@ -167,10 +167,9 @@ function pushPublicKeyBytes(value){
  for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);
  return out;
 }
-function pushIsIosBrowserNotApp(){
- const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||
-  (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
- return ios&&!window.matchMedia('(display-mode: standalone)').matches&&!navigator.standalone;
+async function getPushRegistration(){
+  return await navigator.serviceWorker.register('./sw.js',{scope:'./'});
+}
 }
 async function getPushRegistration() {
   await navigator.serviceWorker.register('./sw.js', {
