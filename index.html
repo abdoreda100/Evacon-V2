@@ -370,7 +370,7 @@ async function enter(user){state.user=user;const {data,error}=await sb.from('pro
 state.profile=data;state.role=String(data.role).trim().toLowerCase();$('loginBox').classList.add('hide');$('app').classList.remove('hide');displayRole();await refresh();page('dashboard');
  syncPushUI().catch(console.warn);
  const pushPage=new URLSearchParams(location.search).get('evaconPage');
- if(pushPage){openPushDestination(pushPage);const clean=new URL(location.href);clean.searchParams.delete('evaconPage');history.replaceState(null,'',clean.pathname+clean.search+clean.hash);}
+ if(pushPage){openPushDestination(pushPage);const clean=new URL(location.href);clean.searchParams.delete('evaconPage');window.history.replaceState(null,'',clean.pathname+clean.search+clean.hash);
 }
 async function refresh(){
  status('جارٍ تحديث البيانات...');
