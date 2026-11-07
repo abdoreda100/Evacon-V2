@@ -164,20 +164,16 @@ function pushPublicKeyBytes(value){
  const normalized=value.replace(/-/g,'+').replace(/_/g,'/');
  const padded=normalized+'='.repeat((4-normalized.length%4)%4);
  const raw=atob(padded),out=new Uint8Array(raw.length);
- for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);
- return out;
+for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);
+return out;
 }
+
 async function getPushRegistration(){
-  return await navigator.serviceWorker.register('./sw.js',{scope:'./'});
-}
-}
-async function getPushRegistration() {
-  await navigator.serviceWorker.register('./sw.js', {
-    scope: './'
+  await navigator.serviceWorker.register('./sw.js',{
+    scope:'./'
   });
 
   return await navigator.serviceWorker.ready;
-}
 }
 async function syncPushUI(){
  const btn=$('pushToggleBtn'),test=$('pushTestBtn');
