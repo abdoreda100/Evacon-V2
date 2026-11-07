@@ -372,6 +372,7 @@ state.profile=data;state.role=String(data.role).trim().toLowerCase();$('loginBox
  const pushPage=new URLSearchParams(location.search).get('evaconPage');
  if(pushPage){openPushDestination(pushPage);const clean=new URL(location.href);clean.searchParams.delete('evaconPage');window.history.replaceState(null,'',clean.pathname+clean.search+clean.hash);
 }
+}                          
 async function refresh(){
  status('جارٍ تحديث البيانات...');
  const calls=await Promise.allSettled([
