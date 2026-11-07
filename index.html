@@ -172,8 +172,13 @@ function pushIsIosBrowserNotApp(){
   (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
  return ios&&!window.matchMedia('(display-mode: standalone)').matches&&!navigator.standalone;
 }
-async function getPushRegistration(){
- return await navigator.serviceWorker.register('./sw.js',{scope:'./'});
+async function getPushRegistration() {
+  await navigator.serviceWorker.register('./sw.js', {
+    scope: './'
+  });
+
+  return await navigator.serviceWorker.ready;
+}
 }
 async function syncPushUI(){
  const btn=$('pushToggleBtn'),test=$('pushTestBtn');
