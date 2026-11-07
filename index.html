@@ -231,9 +231,11 @@ async function turnOffPush(silent=false){
   try{if(state.user)await rpc('evacon_push_unsubscribe',{p_endpoint:sub.endpoint});}
   catch(e){console.warn('Push server unsubscribe failed; invalidating browser subscription',e);}
   await sub.unsubscribe();
- }
- if(!silent){notify('تم إيقاف إشعارات هذا الجهاز');await syncPushUI();}
-
+if(!silent){
+  notify('تم إيقاف إشعارات هذا الجهاز');
+  await syncPushUI();
+}
+}
 async function togglePush() {
   if (!state.user) {
     return notify('سجل الدخول أولاً');
