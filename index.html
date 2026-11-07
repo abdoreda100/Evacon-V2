@@ -223,71 +223,72 @@ async function syncPushUI(){
   });}
  }catch(e){console.warn('Push UI sync failed',e);btn.textContent='🔔 تفعيل إشعارات الجهاز';}
 }
-async function turnOffPush(silent=false){
- if(!pushSupported())return;
- const reg=await navigator.serviceWorker.getRegistration('./');
- const sub=reg?await reg.pushManager.getSubscription():null;
- if(sub){
-  try{if(state.user)await rpc('evacon_push_unsubscribe',{p_endpoint:sub.endpoint});}
-  catch(e){console.warn('Push server unsubscribe failed; invalidating browser subscription',e);}
-  await sub.unsubscribe();
-if(!silent){
-  notify('تم إيقاف إشعارات هذا الجهاز');
-  await syncPushUI();
+// iPhone/iPad require adding the web app to the home screen for Web Push.
+function pushIsIosBrowserNotApp() {
+  const ua = navigator.userAgent || '';
+  const ios = /iPhone|iPad|iPod/i.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const standalone = navigator.standalone === true ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  return ios && !standalone;
 }
+
+async function turnOffPush(silent=false) {
+  if (!pushSupported()) return;
+  const reg = await navigator.serviceWorker.getRegistration('./');
+  const sub = reg ? await reg.pushManager.getSubscription() : null;
+
+  if (sub) {
+    try {
+      if (state.user) {
+        await rpc('evacon_push_unsubscribe', {p_endpoint: sub.endpoint});
+      }
+    } catch (e) {
+      console.warn('Push server unsubscribe failed', e);
+    }
+    await sub.unsubscribe();
+  }
+
+  if (!silent) {
+    notify('تم إيقاف إشعارات هذا الجهاز');
+    await syncPushUI();
+  }
 }
+
 async function togglePush() {
-  if (!state.user) {
-    return notify('سجل الدخول أولاً');
-  }
-
-  if (!pushSupported()) {
-    return alert('المتصفح لا يدعم Push');
-  }
-
-  if (!pushConfigured()) {
-    return alert('مفتاح VAPID غير مضبوط');
-  }
-
-  if (pushIsIosBrowserNotApp()) {
-    return alert('أضف الموقع للشاشة الرئيسية أولاً');
-  }
-
   const btn = $('pushToggleBtn');
-
-  if (btn.disabled) return;
+  if (!btn || btn.disabled) return;
 
   setBusy(btn, true);
   btn.textContent = '⏳ جاري بدء التفعيل...';
 
   try {
+    if (!state.user) throw new Error('سجل الدخول أولاً');
+    if (!pushSupported()) throw new Error('المتصفح لا يدعم Push');
+    if (!pushConfigured()) throw new Error('مفتاح VAPID غير مضبوط');
+    if (pushIsIosBrowserNotApp()) throw new Error('أضف الموقع للشاشة الرئيسية أولاً');
     if (Notification.permission === 'denied') {
       throw new Error('الإشعارات محظورة من إعدادات المتصفح');
     }
 
     if (Notification.permission !== 'granted') {
       const permission = await Notification.requestPermission();
-
       if (permission !== 'granted') {
         throw new Error('لم يتم السماح بالإشعارات');
       }
     }
 
     btn.textContent = '⏳ فحص الاشتراك الحالي...';
-
     const regBefore = await pushWaitFor(
       navigator.serviceWorker.getRegistration('./'),
       12000,
       'تعذر فحص Service Worker'
     );
-
-    const existing = regBefore
-      ? await pushWaitFor(
-          regBefore.pushManager.getSubscription(),
-          12000,
-          'تعذر قراءة اشتراك Push'
-        )
-      : null;
+    const existing = regBefore ? await pushWaitFor(
+      regBefore.pushManager.getSubscription(),
+      12000,
+      'تعذر قراءة اشتراك Push'
+    ) : null;
 
     if (existing) {
       btn.textContent = '⏳ جاري إيقاف الإشعارات...';
@@ -295,26 +296,20 @@ async function togglePush() {
       notify('تم إيقاف الإشعارات');
     } else {
       btn.textContent = '⏳ تشغيل Service Worker...';
-
       const reg = await getPushRegistration();
 
       btn.textContent = '⏳ الاتصال بخدمة Push...';
-
       const sub = await pushWaitFor(
         reg.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: pushPublicKeyBytes(
-            PUSH_VAPID_PUBLIC_KEY
-          )
+          applicationServerKey: pushPublicKeyBytes(PUSH_VAPID_PUBLIC_KEY)
         }),
         30000,
         'خدمة Push لم تستجب خلال 30 ثانية'
       );
 
       btn.textContent = '⏳ حفظ الجهاز في Supabase...';
-
       const data = sub.toJSON();
-
       try {
         await pushWaitFor(
           rpc('evacon_push_subscribe', {
@@ -330,7 +325,6 @@ async function togglePush() {
         await sub.unsubscribe().catch(() => {});
         throw e;
       }
-
       notify('✅ تم تفعيل إشعارات Push بنجاح');
     }
   } catch (e) {
@@ -341,21 +335,7 @@ async function togglePush() {
     syncPushUI().catch(console.warn);
   }
 }
-  const regBefore=await navigator.serviceWorker.getRegistration('./');
-  const existing=regBefore?await regBefore.pushManager.getSubscription():null;
-  if(existing){await turnOffPush(true);notify('تم إيقاف إشعارات هذا الجهاز');}
-  else{
-   const reg=await getPushRegistration();
-   const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:pushPublicKeyBytes(PUSH_VAPID_PUBLIC_KEY)});
-   const data=sub.toJSON();
-   try{await rpc('evacon_push_subscribe',{
-    p_endpoint:sub.endpoint,p_p256dh:data.keys?.p256dh,p_auth:data.keys?.auth,
-    p_user_agent:navigator.userAgent.slice(0,250)
-   });}catch(e){await sub.unsubscribe().catch(()=>{});throw e;}
-   notify('✅ تم تفعيل Push. اضغط تجربة Push للتأكد من وصول إشعار خارجي.');
-  }
- }catch(e){err(e);}finally{setBusy(btn,false);syncPushUI().catch(console.warn);}
-}
+
 async function testPush(){
  if(!state.user)return;
  const btn=$('pushTestBtn');setBusy(btn,true);
